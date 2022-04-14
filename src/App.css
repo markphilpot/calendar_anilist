@@ -1,4 +1,11 @@
 .App {
   display: flex;
+  flex-direction: column;
   width: 100%;
+
+  color: var(--text-primary);
+  background-color: var(--background);
+  transition: all 0.2s;
+
+  min-height: 100vh;
 }

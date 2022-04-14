@@ -18,29 +18,29 @@ import '@fontsource/lato/700.css';
 import '@fontsource/source-sans-pro/700.css';
 
 import Week from './components/Week';
-import { useSearchParam } from 'react-use';
-
-// TODO config
-const sundayStartsWeek = true;
+import Footer from './components/Footer';
+import useSettings from './hooks/useSettings';
 
 function App() {
   const { theme } = useManageTheme();
 
-  const userName = useSearchParam('userName');
+  const { anilistUsername, weekStartsSunday } = useSettings();
 
   const { data } = useQuery<currentAiringScheduleData, currentAiringScheduleVariables>(currentAringSchedule, {
     variables: {
-      userName: userName ?? 'mphilpot',
+      userName: anilistUsername ?? 'mphilpot',
     },
   });
 
-  const now = DateTime.now();
-
-  const startOfWeek = now.startOf('week');
-
-  const weekOffests = useMemo(() => (sundayStartsWeek ? [-1, 0, 1, 2, 3, 4, 5] : [0, 1, 2, 3, 4, 5, 6]), []);
+  const weekOffests = useMemo(
+    () => (weekStartsSunday ? [-1, 0, 1, 2, 3, 4, 5] : [0, 1, 2, 3, 4, 5, 6]),
+    [weekStartsSunday]
+  );
 
   const buckets: Record<string, currentAiringSchedule_Page_mediaList_media[]> = useMemo(() => {
+    const now = DateTime.now();
+    const startOfWeek = now.startOf('week');
+
     const b: Record<string, currentAiringSchedule_Page_mediaList_media[]> = {
       [startOfWeek.plus({ day: weekOffests[0] }).toISODate()]: [],
       [startOfWeek.plus({ day: weekOffests[1] }).toISODate()]: [],
@@ -72,11 +72,12 @@ function App() {
     }
 
     return b;
-  }, [data, startOfWeek, weekOffests]);
+  }, [data, weekOffests]);
 
   return (
     <div className="App" data-theme={theme}>
       <Week buckets={buckets} />
+      <Footer />
     </div>
   );
 }
