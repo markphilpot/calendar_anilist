@@ -2,11 +2,11 @@ import React from 'react';
 
 import './Week.css';
 import { toPairs } from 'ramda';
-import { currentAiringSchedule_Page_mediaList_media } from '../graphql/types/currentAiringSchedule';
+import { usersAiringSchedule_Page_mediaList_media } from '../graphql/types/usersAiringSchedule';
 import Day from './Day';
 
 type Props = {
-  buckets: Record<string, currentAiringSchedule_Page_mediaList_media[]>;
+  buckets: Record<string, usersAiringSchedule_Page_mediaList_media[]>;
 };
 
 const Week = (props: Props) => {

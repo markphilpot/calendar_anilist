@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 
 import './Card.css';
-import { currentAiringSchedule_Page_mediaList_media } from '../graphql/types/currentAiringSchedule';
+import { usersAiringSchedule_Page_mediaList_media } from '../graphql/types/usersAiringSchedule';
 
 type Props = {
-  media: currentAiringSchedule_Page_mediaList_media;
+  media: usersAiringSchedule_Page_mediaList_media;
 };
 
 const Card = (props: Props) => {

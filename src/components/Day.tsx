@@ -1,5 +1,5 @@
 import React from 'react';
-import { currentAiringSchedule_Page_mediaList_media } from '../graphql/types/currentAiringSchedule';
+import { usersAiringSchedule_Page_mediaList_media } from '../graphql/types/usersAiringSchedule';
 
 import './Day.css';
 import Card from './Card';
@@ -7,7 +7,7 @@ import { DateTime } from 'luxon';
 
 type Props = {
   day: string;
-  cards: currentAiringSchedule_Page_mediaList_media[];
+  cards: usersAiringSchedule_Page_mediaList_media[];
 };
 
 const Day = (props: Props) => {

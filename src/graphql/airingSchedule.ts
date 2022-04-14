@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
-export const currentAringSchedule = gql`
-  query currentAiringSchedule($perPage: Int = 50, $page: Int = 1, $userName: String) {
+export const usersAiringSchedule = gql`
+  query usersAiringSchedule($perPage: Int = 50, $page: Int = 1, $userName: String) {
     Page(perPage: $perPage, page: $page) {
       pageInfo {
         hasNextPage
@@ -25,6 +25,37 @@ export const currentAringSchedule = gql`
                 timeUntilAiring
                 episode
               }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const airingSchedule = gql`
+  query airingSchedule($perPage: Int = 50, $page: Int = 1, $year: Int = 2022, $season: MediaSeason = SPRING) {
+    Page(perPage: $perPage, page: $page) {
+      pageInfo {
+        hasNextPage
+        total
+      }
+      media(type: ANIME, status: RELEASING, seasonYear: $year, season: $season, sort: [POPULARITY_DESC]) {
+        id
+        status
+        siteUrl
+        coverImage {
+          medium
+        }
+        title {
+          userPreferred
+        }
+        airingSchedule {
+          edges {
+            node {
+              airingAt
+              timeUntilAiring
+              episode
             }
           }
         }

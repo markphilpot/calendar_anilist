@@ -7,6 +7,13 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum MediaSeason {
+  FALL = 'FALL',
+  SPRING = 'SPRING',
+  SUMMER = 'SUMMER',
+  WINTER = 'WINTER',
+}
+
 export enum MediaStatus {
   CANCELLED = 'CANCELLED',
   FINISHED = 'FINISHED',

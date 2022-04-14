@@ -14,7 +14,7 @@ const Footer = (props: Props) => {
   const { theme, toggleTheme } = useManageTheme();
   const { weekStartsSunday, setWeekStartsSunday, anilistUsername, setAnilistUsername } = useSettings();
 
-  const [editSettings, setEditSettings] = useState(!anilistUsername);
+  const [editSettings, setEditSettings] = useState(false);
 
   const openSettings = useCallback(() => {
     setEditSettings(true);
