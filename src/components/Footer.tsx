@@ -8,13 +8,13 @@ import useSettings from '../hooks/useSettings';
 type Props = {};
 
 const Footer = (props: Props) => {
-  const [editSettings, setEditSettings] = useState(false);
-
   const checkboxRef = useRef(null);
   const usernameRef = useRef(null);
 
   const { theme, toggleTheme } = useManageTheme();
   const { weekStartsSunday, setWeekStartsSunday, anilistUsername, setAnilistUsername } = useSettings();
+
+  const [editSettings, setEditSettings] = useState(!anilistUsername);
 
   const openSettings = useCallback(() => {
     setEditSettings(true);

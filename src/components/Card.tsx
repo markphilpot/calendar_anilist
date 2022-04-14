@@ -21,7 +21,7 @@ const Card = (props: Props) => {
   return (
     <div className={'Card'} onClick={handleOnClick}>
       {imgSrc && (
-        <div>
+        <div className={'imgWrapper'}>
           <img className={'cardImage'} src={imgSrc} alt={title ?? ''} />
         </div>
       )}

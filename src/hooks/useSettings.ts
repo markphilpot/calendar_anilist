@@ -1,29 +1,22 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLocalStorage } from 'react-use';
 
-type SettingsType = {
-  weekStartsSunday: boolean;
-  anilistUsername: string;
-};
-
 const useSettings = () => {
   const [weekStartsSunday, setWeekStartsSunday] = useLocalStorage('weekStartsSunday', true);
   const [anilistUsername, setAnilistUsername] = useLocalStorage('anilistUsername', '');
 
   // We need this to keep track when other hook instances change localStorage
-  // @ts-ignore Pesky undefined
-  const [settingsState, setSettingState] = useState<SettingsType>({ weekStartsSunday, anilistUsername });
+  const [dayStart, setDayStart] = useState(weekStartsSunday);
+  const [username, setUsername] = useState(anilistUsername);
 
   const handleWeekStartsSunday = useCallback(
     (value: boolean) => {
       setWeekStartsSunday(value);
 
       // Need to notify this context
-      window.dispatchEvent(
-        new CustomEvent('settingsChange', { detail: { settings: { ...settingsState, weekStartsSunday: value } } })
-      );
+      window.dispatchEvent(new CustomEvent('settingsChange.dayStart', { detail: { dayStart: value } }));
     },
-    [setWeekStartsSunday, settingsState]
+    [setWeekStartsSunday]
   );
 
   const handleAnilistUsername = useCallback(
@@ -31,30 +24,37 @@ const useSettings = () => {
       setAnilistUsername(value);
 
       // Need to notify this context
-      window.dispatchEvent(
-        new CustomEvent('settingsChange', { detail: { settings: { ...settingsState, anilistUsername: value } } })
-      );
+      window.dispatchEvent(new CustomEvent('settingsChange.username', { detail: { username: value } }));
     },
-    [setAnilistUsername, settingsState]
+    [setAnilistUsername]
   );
 
   useEffect(() => {
-    const checkSettingsData = (event: CustomEvent<{ settings: SettingsType }>) => {
-      const { settings } = event.detail;
-      setSettingState(settings);
+    const captureDayStart = (event: CustomEvent<{ dayStart: boolean }>) => {
+      const { dayStart } = event.detail;
+      setDayStart(dayStart);
+    };
+    const captureUsername = (event: CustomEvent<{ username: string }>) => {
+      const { username } = event.detail;
+      setUsername(username);
     };
 
     // @ts-ignore CustomEvent
-    window.addEventListener('settingsChange', checkSettingsData);
+    window.addEventListener('settingsChange.dayStart', captureDayStart);
+    // @ts-ignore CustomEvent
+    window.addEventListener('settingsChange.username', captureUsername);
 
     return () => {
       // @ts-ignore CustomEvent
-      window.removeEventListener('settingsChange', checkSettingsData);
+      window.removeEventListener('settingsChange.dayStart', captureDayStart);
+      // @ts-ignore CustomEvent
+      window.removeEventListener('settingsChange.username', captureUsername);
     };
   }, []);
 
   return {
-    ...settingsState,
+    weekStartsSunday: dayStart,
+    anilistUsername: username,
     setWeekStartsSunday: handleWeekStartsSunday,
     setAnilistUsername: handleAnilistUsername,
   };
