@@ -1,0 +1,15 @@
+.Day {
+  border: 1px solid #000;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.Day .dayTitle {
+  text-align: center;
+  padding: 8px;
+  border-bottom: 1px solid;
+  font-family: 'Source Sans Pro', serif;
+  font-weight: 700;
+}
