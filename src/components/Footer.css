@@ -6,7 +6,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
+  box-sizing: border-box;
   font-size: 0.9rem;
 }
 
@@ -38,6 +38,7 @@
   padding: 8px;
   width: 400px;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .editSettings .form {
@@ -75,4 +76,18 @@
   display: flex;
   flex-direction: row;
   margin: 4px;
+}
+
+@media only screen and (max-width: 390px) {
+  .Footer {
+    flex-direction: column;
+  }
+  .editSettings {
+    width: 100%;
+    margin: 8px;
+  }
+  .footerButton {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
 }

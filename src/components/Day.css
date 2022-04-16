@@ -5,6 +5,7 @@
   flex: 1;
   flex-direction: column;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .Day:first-child {
@@ -24,4 +25,22 @@
   border-bottom: 1px solid;
   font-family: 'Source Sans Pro', serif;
   font-weight: 700;
+}
+
+@media only screen and (max-width: 390px) {
+  .Day {
+    width: 100%;
+    flex: 1 0 auto;
+    border-right-width: 1px;
+    min-height: 100px;
+    border-top-width: 0;
+  }
+  .Day:first-child {
+    border-top-width: 1px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 0;
+  }
+  .Day:last-child {
+    border-bottom-left-radius: 4px;
+  }
 }
