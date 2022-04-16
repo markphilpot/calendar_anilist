@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react';
 
 import './Footer.css';
 import useManageTheme from '../hooks/useManageTheme';
-import { IoSunnyOutline, IoMoonOutline, IoSettingsOutline, IoReloadOutline } from 'react-icons/io5';
+import { IoSunnyOutline, IoMoonOutline, IoSettingsOutline, IoReloadOutline, IoLogoGithub } from 'react-icons/io5';
 import useSettings from '../hooks/useSettings';
 
 type Props = {
@@ -43,6 +43,10 @@ const Footer = (props: Props) => {
       </div>
       <Icon className={'footerButton'} onClick={toggleTheme} />
       <IoReloadOutline className={'footerButton'} onClick={refresh} />
+      <IoLogoGithub
+        className={'footerButton'}
+        onClick={() => window.open('https://github.com/markphilpot/calendar_anilist', '_blank')}
+      />
       {editSettings ? (
         <div className={'editSettings'}>
           <div className={'form'}>
