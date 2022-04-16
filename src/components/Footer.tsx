@@ -2,12 +2,15 @@ import React, { useCallback, useRef, useState } from 'react';
 
 import './Footer.css';
 import useManageTheme from '../hooks/useManageTheme';
-import { IoSunnyOutline, IoMoonOutline, IoSettingsOutline } from 'react-icons/io5';
+import { IoSunnyOutline, IoMoonOutline, IoSettingsOutline, IoReloadOutline } from 'react-icons/io5';
 import useSettings from '../hooks/useSettings';
 
-type Props = {};
+type Props = {
+  refresh: () => Promise<unknown>;
+};
 
 const Footer = (props: Props) => {
+  const { refresh } = props;
   const checkboxRef = useRef(null);
   const usernameRef = useRef(null);
 
@@ -38,7 +41,8 @@ const Footer = (props: Props) => {
           Anilist
         </a>
       </div>
-      <Icon className={'toggleThemeButton'} onClick={toggleTheme} />
+      <Icon className={'footerButton'} onClick={toggleTheme} />
+      <IoReloadOutline className={'footerButton'} onClick={refresh} />
       {editSettings ? (
         <div className={'editSettings'}>
           <div className={'form'}>

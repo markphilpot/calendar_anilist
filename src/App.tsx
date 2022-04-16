@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { DateTime } from 'luxon';
 
 import './App.css';
@@ -45,27 +45,46 @@ const getSeason = (): MediaSeason => {
   }
 };
 
-function App() {
+type Props = {
+  clearCache: () => Promise<unknown>;
+};
+
+const App = (props: Props) => {
+  const { clearCache } = props;
   const { theme } = useManageTheme();
 
   const { anilistUsername, weekStartsSunday } = useSettings();
 
   const showUserData = anilistUsername?.length !== 0;
 
-  const { data: userData } = useQuery<usersAiringScheduleData, usersAiringScheduleVariables>(usersAiringSchedule, {
-    variables: {
-      userName: anilistUsername,
-    },
-    skip: !showUserData,
-  });
+  const { data: userData, refetch: userDataRefetch } = useQuery<usersAiringScheduleData, usersAiringScheduleVariables>(
+    usersAiringSchedule,
+    {
+      fetchPolicy: 'cache-first',
+      variables: {
+        userName: anilistUsername,
+      },
+      skip: !showUserData,
+    }
+  );
 
-  const { data: globalData } = useQuery<airingScheduleData, airingScheduleVariables>(airingSchedule, {
-    variables: {
-      year: DateTime.now().year,
-      season: getSeason(),
-    },
-    skip: showUserData,
-  });
+  const { data: globalData, refetch: globalDataRefetch } = useQuery<airingScheduleData, airingScheduleVariables>(
+    airingSchedule,
+    {
+      fetchPolicy: 'cache-first',
+      variables: {
+        year: DateTime.now().year,
+        season: getSeason(),
+      },
+      skip: showUserData,
+    }
+  );
+
+  const refresh = useCallback(() => {
+    return clearCache().then((result) => {
+      showUserData ? userDataRefetch() : globalDataRefetch();
+    });
+  }, [clearCache, globalDataRefetch, showUserData, userDataRefetch]);
 
   const weekOffests = useMemo(
     () => (weekStartsSunday ? [-1, 0, 1, 2, 3, 4, 5] : [0, 1, 2, 3, 4, 5, 6]),
@@ -114,9 +133,9 @@ function App() {
   return (
     <div className="App" data-theme={theme}>
       <Week buckets={buckets} />
-      <Footer />
+      <Footer refresh={refresh} />
     </div>
   );
-}
+};
 
 export default App;

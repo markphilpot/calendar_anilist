@@ -7,6 +7,7 @@
     "@fontsource/lato": "^4.5.5",
     "@fontsource/source-sans-pro": "^4.5.6",
     "@fontsource/zen-old-mincho": "^4.5.8",
+    "apollo3-cache-persist": "^0.14.0",
     "classnames": "^2.3.1",
     "graphql": "^15.5.3",
     "luxon": "^2.3.1",
@@ -38,7 +39,7 @@
     "graphql": "^15.5.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "BROWSER=\"google chrome\" react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
