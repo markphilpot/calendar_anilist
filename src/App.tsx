@@ -2,7 +2,6 @@ import React, { useCallback, useMemo } from 'react';
 import { DateTime } from 'luxon';
 
 import './App.css';
-import useManageTheme from './hooks/useManageTheme';
 import { useQuery } from '@apollo/client';
 import { airingSchedule, usersAiringSchedule } from './graphql/airingSchedule';
 import {
@@ -21,6 +20,7 @@ import Footer from './components/Footer';
 import useSettings from './hooks/useSettings';
 import { airingSchedule as airingScheduleData, airingScheduleVariables } from './graphql/types/airingSchedule';
 import { MediaSeason } from './graphql/types/globalTypes';
+import { useTheme } from './context/theme';
 
 const getSeason = (): MediaSeason => {
   const month = DateTime.now().month;
@@ -51,7 +51,7 @@ type Props = {
 
 const App = (props: Props) => {
   const { clearCache } = props;
-  const { theme } = useManageTheme();
+  const theme = useTheme();
 
   const { anilistUsername, weekStartsSunday } = useSettings();
 

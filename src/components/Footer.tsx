@@ -1,9 +1,9 @@
 import React, { useCallback, useRef, useState } from 'react';
 
 import './Footer.css';
-import useManageTheme from '../hooks/useManageTheme';
 import { IoSunnyOutline, IoMoonOutline, IoSettingsOutline, IoReloadOutline, IoLogoGithub } from 'react-icons/io5';
 import useSettings from '../hooks/useSettings';
+import { useManageTheme, useTheme } from '../context/theme';
 
 type Props = {
   refresh: () => Promise<unknown>;
@@ -14,7 +14,8 @@ const Footer = (props: Props) => {
   const checkboxRef = useRef(null);
   const usernameRef = useRef(null);
 
-  const { theme, toggleTheme } = useManageTheme();
+  const theme = useTheme();
+  const { toggleTheme } = useManageTheme();
   const { weekStartsSunday, setWeekStartsSunday, anilistUsername, setAnilistUsername } = useSettings();
 
   const [editSettings, setEditSettings] = useState(false);
