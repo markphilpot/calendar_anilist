@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { ApolloClient, ApolloProvider, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
 import { BrowserRouter } from 'react-router-dom';
 import { LocalStorageWrapper, CachePersistor } from 'apollo3-cache-persist';
-import { useWatchColorScheme, PrefersColorSchemeContext } from './context/theme';
+import { useWatchColorScheme, ThemeContext } from './context/theme';
 
 const Index = () => {
   const [client, setClient] = useState<ApolloClient<NormalizedCacheObject>>();
@@ -42,7 +42,7 @@ const Index = () => {
     return persistor.purge();
   }, [persistor]);
 
-  const { colorScheme } = useWatchColorScheme();
+  const colorScheme = useWatchColorScheme();
 
   if (!client) {
     return null;
@@ -52,9 +52,9 @@ const Index = () => {
     <React.StrictMode>
       <BrowserRouter>
         <ApolloProvider client={client}>
-          <PrefersColorSchemeContext.Provider value={colorScheme}>
+          <ThemeContext.Provider value={colorScheme}>
             <App clearCache={clearCache} />
-          </PrefersColorSchemeContext.Provider>
+          </ThemeContext.Provider>
         </ApolloProvider>
       </BrowserRouter>
     </React.StrictMode>

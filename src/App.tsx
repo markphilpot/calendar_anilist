@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { DateTime } from 'luxon';
 
 import './App.css';
@@ -51,7 +51,7 @@ type Props = {
 
 const App = (props: Props) => {
   const { clearCache } = props;
-  const theme = useTheme();
+  const { theme } = useTheme();
 
   const { anilistUsername, weekStartsSunday } = useSettings();
 
@@ -129,6 +129,15 @@ const App = (props: Props) => {
 
     return b;
   }, [userData, globalData, weekOffests, showUserData]);
+
+  // Make sure portals can see the theme attribute
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+
+    return () => {
+      document.body.removeAttribute('data-theme');
+    };
+  });
 
   return (
     <div className="App" data-theme={theme}>

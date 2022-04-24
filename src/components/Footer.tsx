@@ -1,9 +1,9 @@
 import React, { useCallback, useRef, useState } from 'react';
 
 import './Footer.css';
-import { IoSunnyOutline, IoMoonOutline, IoSettingsOutline, IoReloadOutline, IoLogoGithub } from 'react-icons/io5';
+import { IoSettingsOutline, IoReloadOutline, IoLogoGithub } from 'react-icons/io5';
 import useSettings from '../hooks/useSettings';
-import { useManageTheme, useTheme } from '../context/theme';
+import ThemeMenu from './ThemeMenu';
 
 type Props = {
   refresh: () => Promise<unknown>;
@@ -14,8 +14,6 @@ const Footer = (props: Props) => {
   const checkboxRef = useRef(null);
   const usernameRef = useRef(null);
 
-  const theme = useTheme();
-  const { toggleTheme } = useManageTheme();
   const { weekStartsSunday, setWeekStartsSunday, anilistUsername, setAnilistUsername } = useSettings();
 
   const [editSettings, setEditSettings] = useState(false);
@@ -32,8 +30,6 @@ const Footer = (props: Props) => {
     setEditSettings(false);
   }, [setAnilistUsername, setWeekStartsSunday]);
 
-  const Icon = theme === 'light' ? IoSunnyOutline : IoMoonOutline;
-
   return (
     <div className={'Footer'}>
       <div className={'poweredBy'}>
@@ -42,7 +38,9 @@ const Footer = (props: Props) => {
           Anilist
         </a>
       </div>
-      <Icon className={'footerButton'} onClick={toggleTheme} />
+      <div className={'footerButton'}>
+        <ThemeMenu />
+      </div>
       <IoReloadOutline className={'footerButton'} onClick={refresh} />
       <IoLogoGithub
         className={'footerButton'}
