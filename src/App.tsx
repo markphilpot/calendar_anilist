@@ -137,7 +137,7 @@ const App = (props: Props) => {
     return () => {
       document.body.removeAttribute('data-theme');
     };
-  });
+  }, [theme]);
 
   return (
     <div className="App" data-theme={theme}>
