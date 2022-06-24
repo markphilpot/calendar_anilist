@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import './Card.css';
+// import './Card.css';
 import { usersAiringSchedule_Page_mediaList_media } from '../graphql/types/usersAiringSchedule';
 
 type Props = {
@@ -19,13 +19,16 @@ const Card = (props: Props) => {
   }, [siteUrl]);
 
   return (
-    <div className={'Card'} onClick={handleOnClick}>
+    <div
+      className={'m-1 flex flex-row items-center rounded-md bg-transparent hover:bg-fuchsia-900 hover:bg-opacity-30'}
+      onClick={handleOnClick}
+    >
       {imgSrc && (
-        <div className={'imgWrapper'}>
-          <img className={'cardImage'} src={imgSrc} alt={title ?? ''} />
+        <div className={'h-[50px] w-[50px]'}>
+          <img className={'h-[50px] w-[50px] max-w-none rounded-md object-cover'} src={imgSrc} alt={title ?? ''} />
         </div>
       )}
-      {title && <div className={'cardTitle'}>{title}</div>}
+      {title && <div className={'ml-1 font-lato text-sm font-bold'}>{title}</div>}
     </div>
   );
 };

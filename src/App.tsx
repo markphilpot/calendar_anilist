@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { DateTime } from 'luxon';
 
-import './App.css';
 import { useQuery } from '@apollo/client';
 import { airingSchedule, usersAiringSchedule } from './graphql/airingSchedule';
 import {
@@ -21,6 +20,7 @@ import useSettings from './hooks/useSettings';
 import { airingSchedule as airingScheduleData, airingScheduleVariables } from './graphql/types/airingSchedule';
 import { MediaSeason } from './graphql/types/globalTypes';
 import { useTheme } from './context/theme';
+import classNames from 'classnames';
 
 const getSeason = (): MediaSeason => {
   const month = DateTime.now().month;
@@ -132,15 +132,24 @@ const App = (props: Props) => {
 
   // Make sure portals can see the theme attribute
   useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
+      document.body.classList.add('dark');
+    }
 
     return () => {
-      document.body.removeAttribute('data-theme');
+      if (theme === 'dark') {
+        document.body.classList.remove('dark');
+      }
     };
   }, [theme]);
 
   return (
-    <div className="App" data-theme={theme}>
+    <div
+      className={classNames(
+        'flex min-h-full w-full flex-col bg-white text-black transition-all dark:bg-black dark:text-white',
+        { 'dark': theme === 'dark' }
+      )}
+    >
       <Week buckets={buckets} />
       <Footer refresh={refresh} />
     </div>

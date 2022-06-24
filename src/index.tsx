@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-// @ts-ignore React 18
 import { createRoot } from 'react-dom/client';
+import './tailwind.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -61,9 +61,7 @@ const Index = () => {
   );
 };
 
-const container = document.getElementById('root');
-const root = createRoot(container);
-
+const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(<Index />);
 
 // If you want to start measuring performance in your app, pass a function

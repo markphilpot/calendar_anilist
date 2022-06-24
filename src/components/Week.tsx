@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './Week.css';
 import { toPairs } from 'ramda';
 import { usersAiringSchedule_Page_mediaList_media } from '../graphql/types/usersAiringSchedule';
 import Day from './Day';
@@ -13,7 +12,7 @@ const Week = (props: Props) => {
   const { buckets } = props;
 
   return (
-    <div className={'Week'}>
+    <div className={'box-border flex w-full flex-shrink-0 flex-grow basis-auto flex-row flex-wrap p-2 xs:flex-nowrap'}>
       {toPairs(buckets).map(([key, list]) => {
         return <Day key={key} day={key} cards={list} />;
       })}

@@ -2,14 +2,11 @@ import React, { useMemo } from 'react';
 import { CircleMenu, CircleMenuItem, CircleButton } from '@mphilpot/react-circular-menu';
 import { IoSunnyOutline, IoMoonOutline, IoInvertModeOutline } from 'react-icons/io5';
 
-import { useManageTheme, useTheme } from '../context/theme';
+import { useManageTheme, useTheme } from '../../context/theme';
 
 import '@mphilpot/react-circular-menu/dist/style.css';
-import './ThemeMenu.css';
 
-type Props = {};
-
-const ThemeMenu = (props: Props) => {
+const ThemeMenu = () => {
   const { theme } = useTheme();
   const { setTheme } = useManageTheme();
 
@@ -17,7 +14,7 @@ const ThemeMenu = (props: Props) => {
     if (theme === 'light') {
       return (
         <CircleButton size={2}>
-          <div className={'themeIcon'}>
+          <div className={'bg-white dark:bg-black'}>
             <IoSunnyOutline size={'2em'} />
           </div>
         </CircleButton>
@@ -25,7 +22,7 @@ const ThemeMenu = (props: Props) => {
     } else {
       return (
         <CircleButton size={2}>
-          <div className={'themeIcon'}>
+          <div className={'bg-white dark:bg-black'}>
             <IoMoonOutline size={'2em'} />
           </div>
         </CircleButton>
@@ -49,18 +46,27 @@ const ThemeMenu = (props: Props) => {
       menuToggleElement={ToggleElement}
       closeOnItemClick={true}
     >
-      <CircleMenuItem tooltipComponent={<div className={'tooltip'}>System</div>} onClick={() => setTheme(null)}>
-        <div className={'themeIcon'}>
+      <CircleMenuItem
+        tooltipComponent={<div className={'rounded bg-fuchsia-900 bg-opacity-30 p-2'}>System</div>}
+        onClick={() => setTheme(null)}
+      >
+        <div className={'bg-white dark:bg-black'}>
           <IoInvertModeOutline size={'2em'} />
         </div>
       </CircleMenuItem>
-      <CircleMenuItem tooltipComponent={<div className={'tooltip'}>Light</div>} onClick={() => setTheme('light')}>
-        <div className={'themeIcon'}>
+      <CircleMenuItem
+        tooltipComponent={<div className={'rounded bg-fuchsia-900 bg-opacity-30 p-2'}>Light</div>}
+        onClick={() => setTheme('light')}
+      >
+        <div className={'bg-white dark:bg-black'}>
           <IoSunnyOutline size={'2em'} />
         </div>
       </CircleMenuItem>
-      <CircleMenuItem tooltipComponent={<div className={'tooltip'}>Dark</div>} onClick={() => setTheme('dark')}>
-        <div className={'themeIcon'}>
+      <CircleMenuItem
+        tooltipComponent={<div className={'rounded bg-fuchsia-900 bg-opacity-30 p-2'}>Dark</div>}
+        onClick={() => setTheme('dark')}
+      >
+        <div className={'bg-white dark:bg-black'}>
           <IoMoonOutline size={'2em'} />
         </div>
       </CircleMenuItem>
