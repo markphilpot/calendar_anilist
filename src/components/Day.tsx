@@ -25,7 +25,7 @@ const Day = (props: Props) => {
         'first:rounded-tl first:rounded-tr',
         'xs:first:rounded-bl xs:first:rounded-tl xs:first:rounded-tr-none',
         'last:rounded-br last:rounded-bl',
-        'xs:last:rounded-br xs:last:rounded-tr xs:last:rounded-bl-none last:border-r'
+        'last:border-r xs:last:rounded-br xs:last:rounded-tr xs:last:rounded-bl-none'
       )}
     >
       <div className={'border-b border-black p-1 text-center font-ssp font-bold dark:border-white'}>{dayName}</div>

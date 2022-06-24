@@ -3,7 +3,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import { IoSettingsOutline, IoReloadOutline, IoLogoGithub } from 'react-icons/io5';
 import useSettings from '../../hooks/useSettings';
 import ThemeMenu from './ThemeMenu';
-import PoweredBy from "./PoweredBy";
+import PoweredBy from './PoweredBy';
 
 type Props = {
   refresh: () => Promise<unknown>;
@@ -32,11 +32,11 @@ const Footer = (props: Props) => {
 
   return (
     <div className={'mb-2 box-border flex w-full flex-row items-center justify-center text-sm'}>
-      <PoweredBy/>
+      <PoweredBy />
       <div className={'mr-2 cursor-pointer'}>
-        <ThemeMenu/>
+        <ThemeMenu />
       </div>
-      <IoReloadOutline className={'mr-2 cursor-pointer bg-transparent'} onClick={refresh}/>
+      <IoReloadOutline className={'mr-2 cursor-pointer bg-transparent'} onClick={refresh} />
       <IoLogoGithub
         className={'mr-2 cursor-pointer bg-transparent'}
         onClick={() => window.open('https://github.com/markphilpot/calendar_anilist', '_blank')}
@@ -51,7 +51,7 @@ const Footer = (props: Props) => {
             <div className={'m-2 flex flex-row'}>
               <label>
                 Week Starts Sunday:
-                <input className={'ml-2'} ref={checkboxRef} type={'checkbox'} defaultChecked={weekStartsSunday}/>
+                <input className={'ml-2'} ref={checkboxRef} type={'checkbox'} defaultChecked={weekStartsSunday} />
               </label>
             </div>
             <div className={'m-2 flex flex-row'}>
@@ -76,7 +76,7 @@ const Footer = (props: Props) => {
           </div>
         </div>
       ) : (
-        <IoSettingsOutline className={'cursor-pointer'} onClick={openSettings}/>
+        <IoSettingsOutline className={'cursor-pointer'} onClick={openSettings} />
       )}
     </div>
   );
