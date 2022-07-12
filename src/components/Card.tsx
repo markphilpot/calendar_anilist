@@ -7,6 +7,28 @@ import {
 } from '../graphql/types/usersAiringSchedule';
 import { ExternalLinkType } from '../graphql/types/globalTypes';
 import StreamingIcon from './StreamingIcon';
+import { head } from 'ramda';
+
+const getSiteRank = (site: string) => {
+  switch (site) {
+    case 'Crunchyroll':
+      return 0;
+    case 'HIDIVE':
+      return 1;
+    case 'YouTube':
+      return 2;
+    case 'Netflix':
+      return 3;
+    case 'Disney Plus':
+      return 4;
+    case 'VRV':
+      return 9;
+    case 'Bilibili TV':
+      return 10;
+    default:
+      return 7;
+  }
+};
 
 type Props = {
   media: usersAiringSchedule_Page_mediaList_media;
@@ -18,8 +40,11 @@ const Card = (props: Props) => {
   const title = media.title?.userPreferred;
   const imgSrc = media.coverImage?.medium;
   const siteUrl = media.siteUrl;
-  const streamingExternalLink: usersAiringSchedule_Page_mediaList_media_externalLinks | null | undefined =
-    media.externalLinks?.find((el) => el?.type === ExternalLinkType.STREAMING);
+  const streamingExternalLinks: usersAiringSchedule_Page_mediaList_media_externalLinks[] =
+    media.externalLinks?.filter(
+      (el): el is usersAiringSchedule_Page_mediaList_media_externalLinks => el?.type === ExternalLinkType.STREAMING
+    ) ?? [];
+  const streamingExternalLink = head(streamingExternalLinks.sort((a, b) => getSiteRank(a.site) - getSiteRank(b.site)));
 
   const handleOnClick = useCallback(() => {
     if (siteUrl) window.open(siteUrl, '_blank');
