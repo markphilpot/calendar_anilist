@@ -18,6 +18,13 @@ export const usersAiringSchedule = gql`
           title {
             userPreferred
           }
+          externalLinks {
+            url
+            site
+            type
+            icon
+            color
+          }
           airingSchedule {
             edges {
               node {
@@ -49,6 +56,13 @@ export const airingSchedule = gql`
         }
         title {
           userPreferred
+        }
+        externalLinks {
+          url
+          site
+          type
+          icon
+          color
         }
         airingSchedule {
           edges {

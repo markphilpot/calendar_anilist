@@ -7,6 +7,12 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum ExternalLinkType {
+  INFO = "INFO",
+  SOCIAL = "SOCIAL",
+  STREAMING = "STREAMING",
+}
+
 export enum MediaSeason {
   FALL = "FALL",
   SPRING = "SPRING",
@@ -14,6 +20,9 @@ export enum MediaSeason {
   WINTER = "WINTER",
 }
 
+/**
+ * The current releasing status of the media
+ */
 export enum MediaStatus {
   CANCELLED = "CANCELLED",
   FINISHED = "FINISHED",
