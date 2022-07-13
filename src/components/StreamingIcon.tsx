@@ -14,7 +14,7 @@ const StreamingIcon = (props: Props) => {
 
   return (
     <a
-      className={'absolute bottom-0 right-0 rounded p-1 text-center opacity-40'}
+      className={'absolute bottom-0 right-0 rounded p-1 text-center opacity-40 hover:opacity-100'}
       style={{
         backgroundColor: link.color ?? '#000000',
       }}
