@@ -11,9 +11,9 @@ import { head } from 'ramda';
 
 const getSiteRank = (site: string) => {
   switch (site) {
-    case 'Crunchyroll':
-      return 0;
     case 'HIDIVE':
+      return 0;
+    case 'Crunchyroll':
       return 1;
     case 'YouTube':
       return 2;
