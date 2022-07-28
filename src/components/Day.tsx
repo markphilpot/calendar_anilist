@@ -15,6 +15,8 @@ const Day = (props: Props) => {
 
   const dayName = DateTime.fromISO(day).toFormat('cccc');
 
+  const isToday = dayName === DateTime.now().toFormat('cccc');
+
   return (
     <div
       className={classNames(
@@ -28,7 +30,13 @@ const Day = (props: Props) => {
         'last:border-r xs:last:rounded-br xs:last:rounded-tr xs:last:rounded-bl-none'
       )}
     >
-      <div className={'border-b border-black p-1 text-center font-ssp font-bold dark:border-white'}>{dayName}</div>
+      <div
+        className={classNames('border-b border-black p-1 text-center font-ssp font-bold dark:border-white', {
+          'bg-fuchsia-900 bg-opacity-30 dark:bg-fuchsia-400 dark:bg-opacity-30': isToday,
+        })}
+      >
+        {dayName}
+      </div>
       {cards.map((m) => {
         return <Card key={m.id} media={m} />;
       })}
