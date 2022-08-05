@@ -14,7 +14,7 @@ const ThemeMenu = () => {
     if (theme === 'light') {
       return (
         <CircleButton size={2}>
-          <div className={'bg-white dark:bg-black'}>
+          <div className={'bg-white dark:bg-[#090909]'}>
             <IoSunnyOutline size={'2em'} />
           </div>
         </CircleButton>
@@ -22,7 +22,7 @@ const ThemeMenu = () => {
     } else {
       return (
         <CircleButton size={2}>
-          <div className={'bg-white dark:bg-black'}>
+          <div className={'bg-white dark:bg-[#090909]'}>
             <IoMoonOutline size={'2em'} />
           </div>
         </CircleButton>
@@ -50,7 +50,7 @@ const ThemeMenu = () => {
         tooltipComponent={<div className={'rounded bg-fuchsia-900 bg-opacity-30 p-2'}>System</div>}
         onClick={() => setTheme(null)}
       >
-        <div className={'bg-white dark:bg-black'}>
+        <div className={'bg-white dark:bg-[#090909]'}>
           <IoInvertModeOutline size={'2em'} />
         </div>
       </CircleMenuItem>
@@ -58,7 +58,7 @@ const ThemeMenu = () => {
         tooltipComponent={<div className={'rounded bg-fuchsia-900 bg-opacity-30 p-2'}>Light</div>}
         onClick={() => setTheme('light')}
       >
-        <div className={'bg-white dark:bg-black'}>
+        <div className={'bg-white dark:bg-[#090909]'}>
           <IoSunnyOutline size={'2em'} />
         </div>
       </CircleMenuItem>
@@ -66,7 +66,7 @@ const ThemeMenu = () => {
         tooltipComponent={<div className={'rounded bg-fuchsia-900 bg-opacity-30 p-2'}>Dark</div>}
         onClick={() => setTheme('dark')}
       >
-        <div className={'bg-white dark:bg-black'}>
+        <div className={'bg-white dark:bg-[#090909]'}>
           <IoMoonOutline size={'2em'} />
         </div>
       </CircleMenuItem>

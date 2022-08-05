@@ -53,7 +53,7 @@ const Card = (props: Props) => {
   return (
     <div
       className={
-        'relative m-1 flex flex-row items-center rounded-md bg-transparent hover:bg-fuchsia-900 hover:bg-opacity-30'
+        'relative m-1 mb-2 flex flex-row items-center rounded-md bg-transparent bg-slate-100 hover:bg-fuchsia-900 hover:bg-opacity-30 dark:bg-[#101010] dark:hover:bg-fuchsia-900 dark:hover:bg-opacity-30'
       }
       onClick={handleOnClick}
     >
@@ -62,7 +62,9 @@ const Card = (props: Props) => {
           <img className={'h-[50px] w-[50px] max-w-none rounded-md object-cover'} src={imgSrc} alt={title ?? ''} />
         </div>
       )}
-      {title && <div className={'ml-1 font-lato text-sm font-bold'}>{title}</div>}
+      {title && (
+        <div className={'ml-1 max-h-[3rem] overflow-hidden text-ellipsis font-lato text-xs font-bold'}>{title}</div>
+      )}
       {streamingExternalLink && <StreamingIcon link={streamingExternalLink} />}
     </div>
   );

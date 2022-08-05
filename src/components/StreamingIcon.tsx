@@ -28,7 +28,7 @@ const StreamingIcon = (props: Props) => {
       }}
       onClick={handleOnClick}
     >
-      <img className={'h-[10px] w-[10px]'} src={link.icon} alt={link.site} />
+      <img className={'h-[8px] w-[8px]'} src={link.icon} alt={link.site} />
     </div>
   );
 };

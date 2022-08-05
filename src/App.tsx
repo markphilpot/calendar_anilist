@@ -146,7 +146,7 @@ const App = (props: Props) => {
   return (
     <div
       className={classNames(
-        'flex min-h-full w-full flex-col bg-white text-black transition-all dark:bg-black dark:text-white',
+        'flex min-h-full w-full flex-col bg-white text-black transition-all dark:bg-[#090909] dark:text-zinc-300',
         { 'dark': theme === 'dark' }
       )}
     >

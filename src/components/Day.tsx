@@ -21,7 +21,7 @@ const Day = (props: Props) => {
     <div
       className={classNames(
         'box-border flex min-h-[100px] w-full flex-shrink flex-grow basis-auto cursor-pointer flex-col',
-        'border-black dark:border-white',
+        'border-black dark:border-zinc-400',
         'border border-r border-t',
         'xs:basis-0 xs:border-r-0 xs:border-t',
         'first:rounded-tl first:rounded-tr',
@@ -31,9 +31,12 @@ const Day = (props: Props) => {
       )}
     >
       <div
-        className={classNames('border-b border-black p-1 text-center font-ssp font-bold dark:border-white', {
-          'bg-fuchsia-900 bg-opacity-30 dark:bg-fuchsia-400 dark:bg-opacity-30': isToday,
-        })}
+        className={classNames(
+          'border-b border-black p-1 text-center font-ssp font-bold dark:border-zinc-400 dark:text-white',
+          {
+            'bg-fuchsia-900 bg-opacity-30 dark:bg-fuchsia-400 dark:bg-opacity-30': isToday,
+          }
+        )}
       >
         {dayName}
       </div>
