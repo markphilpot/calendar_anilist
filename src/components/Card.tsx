@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 
-// import './Card.css';
 import {
   usersAiringSchedule_Page_mediaList_media,
   usersAiringSchedule_Page_mediaList_media_externalLinks,
@@ -8,6 +7,7 @@ import {
 import { ExternalLinkType } from '../graphql/types/globalTypes';
 import StreamingIcon from './StreamingIcon';
 import { head } from 'ramda';
+import classNames from 'classnames';
 
 const getSiteRank = (site: string) => {
   switch (site) {
@@ -32,13 +32,14 @@ const getSiteRank = (site: string) => {
 
 type Props = {
   media: usersAiringSchedule_Page_mediaList_media;
+  scaleCard: boolean;
 };
 
 const Card = (props: Props) => {
-  const { media } = props;
+  const { media, scaleCard } = props;
 
   const title = media.title?.userPreferred;
-  const imgSrc = media.coverImage?.medium;
+  const imgSrc = scaleCard ? media.coverImage?.large : media.coverImage?.medium;
   const siteUrl = media.siteUrl;
   const streamingExternalLinks: usersAiringSchedule_Page_mediaList_media_externalLinks[] =
     media.externalLinks?.filter(
@@ -58,12 +59,28 @@ const Card = (props: Props) => {
       onClick={handleOnClick}
     >
       {imgSrc && (
-        <div className={'h-[50px] w-[50px]'}>
-          <img className={'h-[50px] w-[50px] max-w-none rounded-md object-cover'} src={imgSrc} alt={title ?? ''} />
+        <div
+          className={classNames('h-[50px] w-[50px]', {
+            'h-[100px] w-[100px]': scaleCard,
+          })}
+        >
+          <img
+            className={classNames('h-[50px] w-[50px] max-w-none rounded-md object-cover', {
+              'h-[100px] w-[100px]': scaleCard,
+            })}
+            src={imgSrc}
+            alt={title ?? ''}
+          />
         </div>
       )}
       {title && (
-        <div className={'ml-1 max-h-[3rem] overflow-hidden text-ellipsis font-lato text-xs font-bold'}>{title}</div>
+        <div
+          className={classNames('ml-1 max-h-[3rem] overflow-hidden text-ellipsis font-lato text-xs font-bold', {
+            'text-base': scaleCard,
+          })}
+        >
+          {title}
+        </div>
       )}
       {streamingExternalLink && <StreamingIcon link={streamingExternalLink} />}
     </div>

@@ -8,21 +8,31 @@ const Settings = () => {
 
   const cancelButtonRef = useRef(null);
 
-  const { weekStartsSunday, setWeekStartsSunday, anilistUsername, setAnilistUsername } = useSettings();
+  const {
+    weekStartsSunday,
+    setWeekStartsSunday,
+    anilistUsername,
+    setAnilistUsername,
+    showEmptyDays,
+    setShowEmptyDays,
+  } = useSettings();
 
   const [startsSunday, setStartsSunday] = useState(weekStartsSunday ?? true);
   const [username, setUsername] = useState(anilistUsername ?? '');
+  const [emptyDays, setEmptyDays] = useState(showEmptyDays ?? true);
 
   useEffect(() => {
     setStartsSunday(weekStartsSunday ?? true);
     setUsername(anilistUsername ?? '');
-  }, [weekStartsSunday, anilistUsername]);
+    setEmptyDays(showEmptyDays ?? true);
+  }, [weekStartsSunday, anilistUsername, showEmptyDays]);
 
   const handleSave = useCallback(() => {
     setWeekStartsSunday(startsSunday);
     setAnilistUsername(username);
+    setShowEmptyDays(emptyDays);
     setOpen(false);
-  }, [startsSunday, username, setWeekStartsSunday, setAnilistUsername]);
+  }, [startsSunday, username, emptyDays, setWeekStartsSunday, setAnilistUsername, setShowEmptyDays]);
 
   return (
     <>
@@ -76,7 +86,7 @@ const Settings = () => {
                           </div>
                         </div>
 
-                        <div className="relative flex items-start">
+                        <div className="relative mb-4 flex items-start">
                           <div className="flex h-5 items-center">
                             <input
                               id="start-sunday"
@@ -91,6 +101,25 @@ const Settings = () => {
                           <div className="ml-3 text-sm">
                             <label htmlFor="start-sunday" className="font-medium text-gray-700">
                               Week Starts on Sunday
+                            </label>
+                          </div>
+                        </div>
+
+                        <div className="relative flex items-start">
+                          <div className="flex h-5 items-center">
+                            <input
+                              id="show-empty-days"
+                              aria-describedby="show-empty-days-description"
+                              name="show-empty-days"
+                              type="checkbox"
+                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                              checked={emptyDays}
+                              onChange={() => setEmptyDays(!emptyDays)}
+                            />
+                          </div>
+                          <div className="ml-3 text-sm">
+                            <label htmlFor="show-empty-days" className="font-medium text-gray-700">
+                              Show Empty Days
                             </label>
                           </div>
                         </div>

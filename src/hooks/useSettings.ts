@@ -4,10 +4,12 @@ import { useLocalStorage } from 'react-use';
 const useSettings = () => {
   const [weekStartsSunday, setWeekStartsSunday] = useLocalStorage('weekStartsSunday', true);
   const [anilistUsername, setAnilistUsername] = useLocalStorage('anilistUsername', '');
+  const [showEmptyDays, setShowEmptyDays] = useLocalStorage('showEmptyDays', true);
 
   // We need this to keep track when other hook instances change localStorage
   const [dayStart, setDayStart] = useState(weekStartsSunday);
   const [username, setUsername] = useState(anilistUsername);
+  const [emptyDays, setEmptyDays] = useState(showEmptyDays);
 
   const handleWeekStartsSunday = useCallback(
     (value: boolean) => {
@@ -29,6 +31,16 @@ const useSettings = () => {
     [setAnilistUsername]
   );
 
+  const handleShowEmptyDays = useCallback(
+    (value: boolean) => {
+      setShowEmptyDays(value);
+
+      // Need to notify this context
+      window.dispatchEvent(new CustomEvent('settingsChange.showEmptyDays', { detail: { showEmptyDays: value } }));
+    },
+    [setShowEmptyDays]
+  );
+
   useEffect(() => {
     const captureDayStart = (event: CustomEvent<{ dayStart: boolean }>) => {
       const { dayStart } = event.detail;
@@ -38,25 +50,35 @@ const useSettings = () => {
       const { username } = event.detail;
       setUsername(username);
     };
+    const captureEmptyDays = (event: CustomEvent<{ showEmptyDays: boolean }>) => {
+      const { showEmptyDays } = event.detail;
+      setEmptyDays(showEmptyDays);
+    };
 
     // @ts-ignore CustomEvent
     window.addEventListener('settingsChange.dayStart', captureDayStart);
     // @ts-ignore CustomEvent
     window.addEventListener('settingsChange.username', captureUsername);
+    // @ts-ignore CustomEvent
+    window.addEventListener('settingsChange.showEmptyDays', captureEmptyDays);
 
     return () => {
       // @ts-ignore CustomEvent
       window.removeEventListener('settingsChange.dayStart', captureDayStart);
       // @ts-ignore CustomEvent
       window.removeEventListener('settingsChange.username', captureUsername);
+      // @ts-ignore CustomEvent
+      window.removeEventListener('settingsChange.showEmptyDays', captureEmptyDays);
     };
   }, []);
 
   return {
     weekStartsSunday: dayStart,
     anilistUsername: username,
+    showEmptyDays: emptyDays,
     setWeekStartsSunday: handleWeekStartsSunday,
     setAnilistUsername: handleAnilistUsername,
+    setShowEmptyDays: handleShowEmptyDays,
   };
 };
 

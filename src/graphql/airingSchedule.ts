@@ -14,6 +14,7 @@ export const usersAiringSchedule = gql`
           siteUrl
           coverImage {
             medium
+            large
           }
           title {
             userPreferred
@@ -53,6 +54,7 @@ export const airingSchedule = gql`
         siteUrl
         coverImage {
           medium
+          large
         }
         title {
           userPreferred

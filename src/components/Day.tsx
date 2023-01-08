@@ -8,10 +8,11 @@ import classNames from 'classnames';
 type Props = {
   day: string;
   cards: usersAiringSchedule_Page_mediaList_media[];
+  scaleCards: boolean;
 };
 
 const Day = (props: Props) => {
-  const { day, cards } = props;
+  const { day, cards, scaleCards } = props;
 
   const dayName = DateTime.fromISO(day).toFormat('cccc');
 
@@ -20,7 +21,7 @@ const Day = (props: Props) => {
   return (
     <div
       className={classNames(
-        'box-border flex min-h-[100px] w-full flex-shrink flex-grow basis-auto cursor-pointer flex-col',
+        'box-border flex min-h-[100px] flex-grow basis-auto cursor-pointer flex-col',
         'border-black dark:border-zinc-400',
         'border border-r border-t',
         'xs:basis-0 xs:border-r-0 xs:border-t',
@@ -33,6 +34,7 @@ const Day = (props: Props) => {
       <div
         className={classNames(
           'border-b border-black p-1 text-center font-ssp font-bold dark:border-zinc-400 dark:text-white',
+          'px-6',
           {
             'bg-fuchsia-900 bg-opacity-30 dark:bg-fuchsia-400 dark:bg-opacity-30': isToday,
           }
@@ -41,7 +43,7 @@ const Day = (props: Props) => {
         {dayName}
       </div>
       {cards.map((m) => {
-        return <Card key={m.id} media={m} />;
+        return <Card key={m.id} media={m} scaleCard={scaleCards} />;
       })}
     </div>
   );

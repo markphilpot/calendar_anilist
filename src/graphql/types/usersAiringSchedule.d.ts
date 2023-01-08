@@ -27,6 +27,10 @@ export interface usersAiringSchedule_Page_mediaList_media_coverImage {
    * The cover image url of the media at medium size
    */
   medium: string | null;
+  /**
+   * The cover image url of the media at a large size
+   */
+  large: string | null;
 }
 
 export interface usersAiringSchedule_Page_mediaList_media_title {
