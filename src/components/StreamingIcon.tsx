@@ -22,13 +22,13 @@ const StreamingIcon = (props: Props) => {
 
   return (
     <div
-      className={'absolute bottom-0 right-0 rounded p-1 text-center opacity-40 hover:opacity-100'}
+      className={'absolute bottom-1 right-1 rounded p-0.5 text-center opacity-40 hover:opacity-100'}
       style={{
         backgroundColor: link.color ?? '#000000',
       }}
       onClick={handleOnClick}
     >
-      <img className={'h-[8px] w-[8px]'} src={link.icon} alt={link.site} />
+      <img className={'h-[12px] w-[12px]'} src={link.icon} alt={link.site} />
     </div>
   );
 };

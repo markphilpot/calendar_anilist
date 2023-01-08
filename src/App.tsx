@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { DateTime } from 'luxon';
 
 import { useQuery } from '@apollo/client';
@@ -19,8 +19,6 @@ import Footer from './components/Footer';
 import useSettings from './hooks/useSettings';
 import { airingSchedule as airingScheduleData, airingScheduleVariables } from './graphql/types/airingSchedule';
 import { MediaSeason } from './graphql/types/globalTypes';
-import { useTheme } from './context/theme';
-import classNames from 'classnames';
 
 const getSeason = (): MediaSeason => {
   const month = DateTime.now().month;
@@ -51,34 +49,37 @@ type Props = {
 
 const App = (props: Props) => {
   const { clearCache } = props;
-  const { theme } = useTheme();
 
   const { anilistUsername, weekStartsSunday } = useSettings();
 
   const showUserData = anilistUsername?.length !== 0;
 
-  const { data: userData, refetch: userDataRefetch } = useQuery<usersAiringScheduleData, usersAiringScheduleVariables>(
-    usersAiringSchedule,
-    {
-      fetchPolicy: 'cache-first',
-      variables: {
-        userName: anilistUsername,
-      },
-      skip: !showUserData,
-    }
-  );
+  const {
+    data: userData,
+    refetch: userDataRefetch,
+    loading: userLoading,
+  } = useQuery<usersAiringScheduleData, usersAiringScheduleVariables>(usersAiringSchedule, {
+    fetchPolicy: 'cache-first',
+    variables: {
+      userName: anilistUsername,
+    },
+    skip: !showUserData,
+    notifyOnNetworkStatusChange: true,
+  });
 
-  const { data: globalData, refetch: globalDataRefetch } = useQuery<airingScheduleData, airingScheduleVariables>(
-    airingSchedule,
-    {
-      fetchPolicy: 'cache-first',
-      variables: {
-        year: DateTime.now().year,
-        season: getSeason(),
-      },
-      skip: showUserData,
-    }
-  );
+  const {
+    data: globalData,
+    refetch: globalDataRefetch,
+    loading: globalLoading,
+  } = useQuery<airingScheduleData, airingScheduleVariables>(airingSchedule, {
+    fetchPolicy: 'cache-first',
+    variables: {
+      year: DateTime.now().year,
+      season: getSeason(),
+    },
+    skip: showUserData,
+    notifyOnNetworkStatusChange: true,
+  });
 
   const refresh = useCallback(() => {
     return clearCache().then((result) => {
@@ -130,28 +131,14 @@ const App = (props: Props) => {
     return b;
   }, [userData, globalData, weekOffests, showUserData]);
 
-  // Make sure portals can see the theme attribute
-  useEffect(() => {
-    if (theme === 'dark') {
-      document.body.classList.add('dark');
-    }
-
-    return () => {
-      if (theme === 'dark') {
-        document.body.classList.remove('dark');
-      }
-    };
-  }, [theme]);
-
   return (
     <div
-      className={classNames(
-        'flex min-h-full w-full flex-col bg-white text-black transition-all dark:bg-[#090909] dark:text-zinc-300',
-        { 'dark': theme === 'dark' }
-      )}
+      className={
+        'flex min-h-full w-full flex-col bg-white text-black transition-all dark:bg-[#090909] dark:text-zinc-300'
+      }
     >
       <Week buckets={buckets} />
-      <Footer refresh={refresh} />
+      <Footer refresh={refresh} loading={userLoading || globalLoading} />
     </div>
   );
 };

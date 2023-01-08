@@ -53,7 +53,7 @@ const Card = (props: Props) => {
   return (
     <div
       className={
-        'relative m-1 mb-2 flex flex-row items-center rounded-md bg-transparent bg-slate-100 hover:bg-fuchsia-900 hover:bg-opacity-30 dark:bg-[#101010] dark:hover:bg-fuchsia-900 dark:hover:bg-opacity-30'
+        'relative m-1 mb-2 flex flex-row items-start rounded-md bg-transparent bg-slate-100 p-1 hover:bg-fuchsia-900 hover:bg-opacity-30 dark:bg-slate-800 dark:hover:bg-fuchsia-900 dark:hover:bg-opacity-30'
       }
       onClick={handleOnClick}
     >

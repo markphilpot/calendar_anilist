@@ -2,7 +2,7 @@ import React from 'react';
 
 const PoweredBy = () => {
   return (
-    <div className={'mr-2'}>
+    <div className={'mr-2 text-xs'}>
       Powered by{' '}
       <a
         className={'underline decoration-1 underline-offset-2'}
