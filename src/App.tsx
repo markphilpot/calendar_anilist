@@ -134,7 +134,7 @@ const App = (props: Props) => {
   return (
     <div
       className={
-        'flex min-h-full w-full flex-col bg-white text-black transition-all dark:bg-[#090909] dark:text-zinc-300'
+        'flex min-h-full w-full flex-col bg-white text-black transition-all p-safe dark:bg-[#090909] dark:text-zinc-300'
       }
     >
       <Week buckets={buckets} />
