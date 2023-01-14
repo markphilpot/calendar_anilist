@@ -54,19 +54,19 @@ const Card = (props: Props) => {
   return (
     <div
       className={
-        'relative m-1 mb-2 flex flex-row items-start rounded-md bg-transparent bg-slate-100 p-1 hover:bg-fuchsia-900 hover:bg-opacity-30 dark:bg-slate-800 dark:hover:bg-fuchsia-900 dark:hover:bg-opacity-30'
+        'relative m-1 mb-2 flex flex-row items-start rounded-md bg-transparent bg-slate-100 hover:bg-fuchsia-900 hover:bg-opacity-30 dark:bg-slate-800 dark:hover:bg-fuchsia-900 dark:hover:bg-opacity-30'
       }
       onClick={handleOnClick}
     >
       {imgSrc && (
         <div
-          className={classNames('h-[50px] w-[50px]', {
-            'h-[100px] w-[100px]': scaleCard,
+          className={classNames('h-[114px] w-[80px]', {
+            'h-[171px] w-[120px]': scaleCard,
           })}
         >
           <img
-            className={classNames('h-[50px] w-[50px] max-w-none rounded-md object-cover', {
-              'h-[100px] w-[100px]': scaleCard,
+            className={classNames('h-[114px] w-[80px] max-w-none rounded-md object-cover', {
+              'h-[171px] w-[120px]': scaleCard,
             })}
             src={imgSrc}
             alt={title ?? ''}
@@ -74,15 +74,17 @@ const Card = (props: Props) => {
         </div>
       )}
       {title && (
-        <div
-          className={classNames('ml-1 max-h-[3rem] overflow-hidden text-ellipsis font-lato text-xs font-bold', {
-            'text-base': scaleCard,
-          })}
-        >
-          {title}
+        <div className="flex h-full flex-grow flex-col overflow-hidden">
+          <div
+            className={classNames('ml-2 max-h-[114px] overflow-hidden text-ellipsis font-lato text-sm font-bold', {
+              'ml-2 text-base': scaleCard,
+            })}
+          >
+            {title}
+          </div>
+          {streamingExternalLink && <StreamingIcon link={streamingExternalLink} />}
         </div>
       )}
-      {streamingExternalLink && <StreamingIcon link={streamingExternalLink} />}
     </div>
   );
 };
