@@ -1,15 +1,12 @@
 import React, { useCallback } from 'react';
 
-import {
-  usersAiringSchedule_Page_mediaList_media,
-  usersAiringSchedule_Page_mediaList_media_externalLinks,
-} from '../graphql/types/usersAiringSchedule';
-import { ExternalLinkType } from '../graphql/types/globalTypes';
 import StreamingIcon from './StreamingIcon';
 import { head } from 'ramda';
 import classNames from 'classnames';
+import { AiringScheduleMedia, AiringScheduleMediaExternalLink } from '../types';
+import useSettings from '../hooks/useSettings';
 
-const getSiteRank = (site: string) => {
+const getSiteRank = (site?: string) => {
   switch (site) {
     case 'HIDIVE':
       return 0;
@@ -31,20 +28,21 @@ const getSiteRank = (site: string) => {
 };
 
 type Props = {
-  media: usersAiringSchedule_Page_mediaList_media;
+  media: AiringScheduleMedia;
   scaleCard: boolean;
 };
 
 const Card = (props: Props) => {
   const { media, scaleCard } = props;
 
-  const title = media.title?.userPreferred;
+  const { showEnglishTitle } = useSettings();
+
+  const title = media.title?.romaji;
+  const titleEnglish = media.title?.english;
   const imgSrc = scaleCard ? media.coverImage?.large : media.coverImage?.medium;
   const siteUrl = media.siteUrl;
-  const streamingExternalLinks: usersAiringSchedule_Page_mediaList_media_externalLinks[] =
-    media.externalLinks?.filter(
-      (el): el is usersAiringSchedule_Page_mediaList_media_externalLinks => el?.type === ExternalLinkType.STREAMING
-    ) ?? [];
+  const streamingExternalLinks =
+    media.externalLinks?.filter((el): el is AiringScheduleMediaExternalLink => el?.type === 'STREAMING') ?? [];
   const streamingExternalLink = head(streamingExternalLinks.sort((a, b) => getSiteRank(a.site) - getSiteRank(b.site)));
 
   const handleOnClick = useCallback(() => {
@@ -74,7 +72,7 @@ const Card = (props: Props) => {
         </div>
       )}
       {title && (
-        <div className="flex h-full flex-grow flex-col overflow-hidden">
+        <div className="flex h-full flex-grow flex-col overflow-hidden gap-4">
           <div
             className={classNames('ml-2 max-h-[114px] overflow-hidden text-ellipsis font-lato text-sm font-bold', {
               'ml-2 text-base': scaleCard,
@@ -82,6 +80,18 @@ const Card = (props: Props) => {
           >
             {title}
           </div>
+          {showEnglishTitle && (
+            <div
+              className={classNames(
+                'ml-2 max-h-[114px] overflow-hidden text-ellipsis font-lato text-xs font-bold line-clamp-2',
+                {
+                  'ml-2': scaleCard,
+                }
+              )}
+            >
+              {titleEnglish}
+            </div>
+          )}
           {streamingExternalLink && <StreamingIcon link={streamingExternalLink} />}
         </div>
       )}

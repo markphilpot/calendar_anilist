@@ -15,24 +15,38 @@ const Settings = () => {
     setAnilistUsername,
     showEmptyDays,
     setShowEmptyDays,
+    showEnglishTitle,
+    setShowEnglishTitle,
   } = useSettings();
 
   const [startsSunday, setStartsSunday] = useState(weekStartsSunday ?? true);
   const [username, setUsername] = useState(anilistUsername ?? '');
   const [emptyDays, setEmptyDays] = useState(showEmptyDays ?? true);
+  const [showEngTitle, setShowEngTitle] = useState(showEnglishTitle ?? true);
 
   useEffect(() => {
     setStartsSunday(weekStartsSunday ?? true);
     setUsername(anilistUsername ?? '');
     setEmptyDays(showEmptyDays ?? true);
-  }, [weekStartsSunday, anilistUsername, showEmptyDays]);
+    setShowEngTitle(showEnglishTitle ?? true);
+  }, [weekStartsSunday, anilistUsername, showEmptyDays, showEnglishTitle]);
 
   const handleSave = useCallback(() => {
     setWeekStartsSunday(startsSunday);
     setAnilistUsername(username);
     setShowEmptyDays(emptyDays);
+    setShowEnglishTitle(showEngTitle);
     setOpen(false);
-  }, [startsSunday, username, emptyDays, setWeekStartsSunday, setAnilistUsername, setShowEmptyDays]);
+  }, [
+    startsSunday,
+    username,
+    emptyDays,
+    showEngTitle,
+    setWeekStartsSunday,
+    setAnilistUsername,
+    setShowEmptyDays,
+    setShowEnglishTitle,
+  ]);
 
   return (
     <>
@@ -105,7 +119,7 @@ const Settings = () => {
                           </div>
                         </div>
 
-                        <div className="relative flex items-start">
+                        <div className="relative mb-4 flex items-start">
                           <div className="flex h-5 items-center">
                             <input
                               id="show-empty-days"
@@ -120,6 +134,25 @@ const Settings = () => {
                           <div className="ml-3 text-sm">
                             <label htmlFor="show-empty-days" className="font-medium text-gray-700">
                               Show Empty Days
+                            </label>
+                          </div>
+                        </div>
+
+                        <div className="relative flex items-start">
+                          <div className="flex h-5 items-center">
+                            <input
+                              id="show-english-title"
+                              aria-describedby="show-english-title-description"
+                              name="show-english-title"
+                              type="checkbox"
+                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                              checked={showEngTitle}
+                              onChange={() => setShowEngTitle(!showEngTitle)}
+                            />
+                          </div>
+                          <div className="ml-3 text-sm">
+                            <label htmlFor="show-english-title" className="font-medium text-gray-700">
+                              Show English Title
                             </label>
                           </div>
                         </div>

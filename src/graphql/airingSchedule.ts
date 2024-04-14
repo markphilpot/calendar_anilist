@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client';
+import { gql } from '../gql';
 
-export const usersAiringSchedule = gql`
+export const usersAiringSchedule = gql(`
   query usersAiringSchedule($perPage: Int = 50, $page: Int = 1, $userName: String) {
     Page(perPage: $perPage, page: $page) {
       pageInfo {
@@ -17,7 +17,8 @@ export const usersAiringSchedule = gql`
             large
           }
           title {
-            userPreferred
+            romaji
+            english
           }
           externalLinks {
             url
@@ -39,9 +40,9 @@ export const usersAiringSchedule = gql`
       }
     }
   }
-`;
+`);
 
-export const airingSchedule = gql`
+export const airingSchedule = gql(`
   query airingSchedule($perPage: Int = 50, $page: Int = 1, $year: Int = 2022, $season: MediaSeason = SPRING) {
     Page(perPage: $perPage, page: $page) {
       pageInfo {
@@ -57,7 +58,8 @@ export const airingSchedule = gql`
           large
         }
         title {
-          userPreferred
+          romaji
+          english
         }
         externalLinks {
           url
@@ -78,4 +80,4 @@ export const airingSchedule = gql`
       }
     }
   }
-`;
+`);

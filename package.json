@@ -35,7 +35,9 @@
     "@types/ramda": "^0.28.7",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "apollo": "^2.33.10",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "prettier": "^2.8.2",
     "prettier-plugin-tailwindcss": "^0.2.1",
     "tailwindcss": "^3.2.4",
@@ -55,8 +57,8 @@
     "lint:es": "eslint .",
     "lint:tsc": "tsc --noemit",
     "analyze": "craco build",
-    "update-schema": "curl -i -X POST https://graphql.anilist.co -H \"Content-Type: application/graphql\" -d @src/assets/introspection.graphql",
-    "g2ts": "apollo codegen:generate --localSchemaFile=\"./assets/schema.graphql\" --target=typescript --tsFileExtension=d.ts --tagName=gql --outputFlat src/graphql/types && cp src/graphql/types/globalTypes.d.ts src/graphql/types/globalTypes.ts"
+    "update-schema": "curl -i -X POST https://graphql.anilist.co -H \"Content-Type: application/graphql\" -d @assets/introspection.graphql",
+    "gql-codegen": "graphql-codegen && prettier --write src/gql/ --cache"
   },
   "eslintConfig": {
     "extends": [

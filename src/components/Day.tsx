@@ -1,13 +1,13 @@
 import React from 'react';
-import { usersAiringSchedule_Page_mediaList_media } from '../graphql/types/usersAiringSchedule';
 
 import Card from './Card';
 import { DateTime } from 'luxon';
 import classNames from 'classnames';
+import { AiringScheduleMedia } from '../types';
 
 type Props = {
   day: string;
-  cards: usersAiringSchedule_Page_mediaList_media[];
+  cards: AiringScheduleMedia[];
   scaleCards: boolean;
 };
 

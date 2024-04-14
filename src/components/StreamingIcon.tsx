@@ -1,8 +1,8 @@
 import React, { useCallback, MouseEventHandler } from 'react';
-import { usersAiringSchedule_Page_mediaList_media_externalLinks } from '../graphql/types/usersAiringSchedule';
+import { AiringScheduleMedia, ArrayElement } from '../types';
 
 type Props = {
-  link: usersAiringSchedule_Page_mediaList_media_externalLinks;
+  link: NonNullable<ArrayElement<NonNullable<AiringScheduleMedia['externalLinks']>>>;
 };
 
 const StreamingIcon = (props: Props) => {

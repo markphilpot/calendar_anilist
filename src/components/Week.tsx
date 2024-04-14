@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 
 import { toPairs } from 'ramda';
-import { usersAiringSchedule_Page_mediaList_media } from '../graphql/types/usersAiringSchedule';
 import Day from './Day';
 import useSettings from '../hooks/useSettings';
+import { AiringScheduleMedia } from '../types';
 
 type Props = {
-  buckets: Record<string, usersAiringSchedule_Page_mediaList_media[]>;
+  buckets: Record<string, AiringScheduleMedia[]>;
 };
 
 const Week = (props: Props) => {

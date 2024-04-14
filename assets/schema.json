@@ -225,6 +225,15 @@
                   "defaultValue": null
                 },
                 {
+                  "name": "licensedById",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
                   "name": "averageScore",
                   "type": {
                     "kind": "SCALAR",
@@ -630,6 +639,19 @@
                     "ofType": {
                       "kind": "SCALAR",
                       "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "licensedById_in",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Int",
                       "ofType": null
                     }
                   },
@@ -2811,6 +2833,47 @@
                 "name": "SiteStatistics",
                 "ofType": null
               }
+            },
+            {
+              "name": "ExternalLinkSourceCollection",
+              "args": [
+                {
+                  "name": "id",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "type",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "ExternalLinkType",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "mediaType",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "ExternalLinkMediaType",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "MediaExternalLink",
+                  "ofType": null
+                }
+              }
             }
           ],
           "inputFields": null,
@@ -3082,6 +3145,15 @@
                   "type": {
                     "kind": "SCALAR",
                     "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "licensedById",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
                     "ofType": null
                   },
                   "defaultValue": null
@@ -3492,6 +3564,19 @@
                     "ofType": {
                       "kind": "SCALAR",
                       "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "licensedById_in",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Int",
                       "ofType": null
                     }
                   },
@@ -5867,6 +5952,28 @@
                 "name": "UserStaffNameLanguage",
                 "ofType": null
               }
+            },
+            {
+              "name": "restrictMessagesToFollowing",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            {
+              "name": "disabledListActivity",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ListActivityOption",
+                  "ofType": null
+                }
+              }
             }
           ],
           "inputFields": null,
@@ -6006,6 +6113,62 @@
             },
             {
               "name": "NATIVE"
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "ListActivityOption",
+          "fields": [
+            {
+              "name": "disabled",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            {
+              "name": "type",
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "MediaListStatus",
+                "ofType": null
+              }
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "MediaListStatus",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "CURRENT"
+            },
+            {
+              "name": "PLANNING"
+            },
+            {
+              "name": "COMPLETED"
+            },
+            {
+              "name": "DROPPED"
+            },
+            {
+              "name": "PAUSED"
+            },
+            {
+              "name": "REPEATING"
             }
           ],
           "possibleTypes": null
@@ -7071,6 +7234,19 @@
               }
             },
             {
+              "name": "isFavouriteBlocked",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              }
+            },
+            {
               "name": "isAdult",
               "args": [],
               "type": {
@@ -7343,6 +7519,15 @@
             },
             {
               "name": "isRecommendationBlocked",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            {
+              "name": "isReviewBlocked",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -9906,13 +10091,9 @@
               "name": "url",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               }
             },
             {
@@ -9927,11 +10108,93 @@
                   "ofType": null
                 }
               }
+            },
+            {
+              "name": "siteId",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            {
+              "name": "type",
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "ExternalLinkType",
+                "ofType": null
+              }
+            },
+            {
+              "name": "language",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "name": "color",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "name": "icon",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "name": "notes",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "name": "isDisabled",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
             }
           ],
           "inputFields": null,
           "interfaces": [],
           "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "ExternalLinkType",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "INFO"
+            },
+            {
+              "name": "STREAMING"
+            },
+            {
+              "name": "SOCIAL"
+            }
+          ],
           "possibleTypes": null
         },
         {
@@ -10318,34 +10581,6 @@
           "inputFields": null,
           "interfaces": [],
           "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "ENUM",
-          "name": "MediaListStatus",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "CURRENT"
-            },
-            {
-              "name": "PLANNING"
-            },
-            {
-              "name": "COMPLETED"
-            },
-            {
-              "name": "DROPPED"
-            },
-            {
-              "name": "PAUSED"
-            },
-            {
-              "name": "REPEATING"
-            }
-          ],
           "possibleTypes": null
         },
         {
@@ -12741,6 +12976,12 @@
             },
             {
               "name": "RETIRED"
+            },
+            {
+              "name": "CHARACTER_DATA"
+            },
+            {
+              "name": "STAFF_DATA"
             }
           ],
           "possibleTypes": null
@@ -14379,6 +14620,15 @@
               }
             },
             {
+              "name": "isPinned",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            {
               "name": "createdAt",
               "args": [],
               "type": {
@@ -14531,6 +14781,15 @@
             },
             {
               "name": "isLiked",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            {
+              "name": "isPinned",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -15525,6 +15784,15 @@
                 "name": "Json",
                 "ofType": null
               }
+            },
+            {
+              "name": "isLocked",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
             }
           ],
           "inputFields": null,
@@ -16271,6 +16539,9 @@
             },
             {
               "name": "ID_DESC"
+            },
+            {
+              "name": "PINNED"
             }
           ],
           "possibleTypes": null
@@ -17020,6 +17291,25 @@
           "possibleTypes": null
         },
         {
+          "kind": "ENUM",
+          "name": "ExternalLinkMediaType",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "ANIME"
+            },
+            {
+              "name": "MANGA"
+            },
+            {
+              "name": "STAFF"
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
           "kind": "OBJECT",
           "name": "Mutation",
           "fields": [
@@ -17153,6 +17443,28 @@
                     "kind": "ENUM",
                     "name": "UserStaffNameLanguage",
                     "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "restrictMessagesToFollowing",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "disabledListActivity",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "ListActivityOptionInput",
+                      "ofType": null
+                    }
                   },
                   "defaultValue": null
                 }
@@ -17665,6 +17977,34 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "Deleted",
+                "ofType": null
+              }
+            },
+            {
+              "name": "ToggleActivityPin",
+              "args": [
+                {
+                  "name": "id",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "pinned",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "UNION",
+                "name": "ActivityUnion",
                 "ofType": null
               }
             },
@@ -18349,6 +18689,15 @@
                     "ofType": null
                   },
                   "defaultValue": null
+                },
+                {
+                  "name": "locked",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": null
                 }
               ],
               "type": {
@@ -18546,6 +18895,34 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ListActivityOptionInput",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "disabled",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "type",
+              "type": {
+                "kind": "ENUM",
+                "name": "MediaListStatus",
                 "ofType": null
               },
               "defaultValue": null
@@ -19292,6 +19669,15 @@
                   "defaultValue": null
                 },
                 {
+                  "name": "licensedById",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
                   "name": "averageScore",
                   "type": {
                     "kind": "SCALAR",
@@ -19697,6 +20083,19 @@
                     "ofType": {
                       "kind": "SCALAR",
                       "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "licensedById_in",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Int",
                       "ofType": null
                     }
                   },
@@ -21802,7 +22201,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "MediaExternalLink",
+                  "name": "MediaSubmissionComparison",
                   "ofType": null
                 }
               }
@@ -21859,6 +22258,15 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "StudioEdge",
+                "ofType": null
+              }
+            },
+            {
+              "name": "externalLink",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "MediaExternalLink",
                 "ofType": null
               }
             }
@@ -21995,6 +22403,15 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "Studio",
+                "ofType": null
+              }
+            },
+            {
+              "name": "externalLink",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "MediaExternalLink",
                 "ofType": null
               }
             },
@@ -22375,6 +22792,15 @@
               }
             },
             {
+              "name": "externalLink",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "MediaExternalLink",
+                "ofType": null
+              }
+            },
+            {
               "name": "createdAt",
               "args": [],
               "type": {
@@ -22636,6 +23062,43 @@
         },
         {
           "kind": "INPUT_OBJECT",
+          "name": "AiringScheduleInput",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "airingAt",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "episode",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "timeUntilAiring",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
           "name": "MediaExternalLinkInput",
           "fields": null,
           "inputFields": [
@@ -22675,43 +23138,6 @@
                   "name": "String",
                   "ofType": null
                 }
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "AiringScheduleInput",
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "airingAt",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "episode",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "timeUntilAiring",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
               },
               "defaultValue": null
             }
