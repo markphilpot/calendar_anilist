@@ -7,7 +7,7 @@ export const usersAiringSchedule = gql(`
         hasNextPage
         total
       }
-      mediaList(userName: $userName, type: ANIME, status: CURRENT) {
+      mediaList(userName: $userName, type: ANIME, status_in: [CURRENT, PLANNING]) {
         media {
           id
           status

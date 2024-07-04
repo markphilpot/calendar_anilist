@@ -3489,8 +3489,14 @@ export const usersAiringScheduleDocument = {
                     },
                     {
                       'kind': 'Argument',
-                      'name': { 'kind': 'Name', 'value': 'status' },
-                      'value': { 'kind': 'EnumValue', 'value': 'CURRENT' },
+                      'name': { 'kind': 'Name', 'value': 'status_in' },
+                      'value': {
+                        'kind': 'ListValue',
+                        'values': [
+                          { 'kind': 'EnumValue', 'value': 'CURRENT' },
+                          { 'kind': 'EnumValue', 'value': 'PLANNING' },
+                        ],
+                      },
                     },
                   ],
                   'selectionSet': {
