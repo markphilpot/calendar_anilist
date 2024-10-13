@@ -116,6 +116,7 @@ const App = (props: Props) => {
 
           if (day in b && media != null) {
             b[day].push(media);
+            break;
           }
         }
       }

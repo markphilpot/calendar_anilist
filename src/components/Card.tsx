@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
 import StreamingIcon from './StreamingIcon';
 import { head } from 'ramda';
@@ -45,16 +45,14 @@ const Card = (props: Props) => {
     media.externalLinks?.filter((el): el is AiringScheduleMediaExternalLink => el?.type === 'STREAMING') ?? [];
   const streamingExternalLink = head(streamingExternalLinks.sort((a, b) => getSiteRank(a.site) - getSiteRank(b.site)));
 
-  const handleOnClick = useCallback(() => {
-    if (siteUrl) window.open(siteUrl, '_blank');
-  }, [siteUrl]);
-
   return (
-    <div
+    <a
       className={
         'relative m-1 mb-2 flex flex-row items-start rounded-md bg-transparent bg-slate-100 hover:bg-fuchsia-900 hover:bg-opacity-30 dark:bg-slate-800 dark:hover:bg-fuchsia-900 dark:hover:bg-opacity-30'
       }
-      onClick={handleOnClick}
+      href={siteUrl ?? ''}
+      target={'_blank'}
+      rel={'noreferrer noopener'}
     >
       {imgSrc && (
         <div
@@ -89,10 +87,11 @@ const Card = (props: Props) => {
               {titleEnglish}
             </div>
           )}
+          {/* This is technically a nested <a> but I think this is a proper use case for it*/}
           {streamingExternalLink && <StreamingIcon link={streamingExternalLink} />}
         </div>
       )}
-    </div>
+    </a>
   );
 };
 
