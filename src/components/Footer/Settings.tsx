@@ -17,35 +17,42 @@ const Settings = () => {
     setShowEmptyDays,
     showEnglishTitle,
     setShowEnglishTitle,
+    showProgress,
+    setShowProgress,
   } = useSettings();
 
   const [startsSunday, setStartsSunday] = useState(weekStartsSunday ?? true);
   const [username, setUsername] = useState(anilistUsername ?? '');
   const [emptyDays, setEmptyDays] = useState(showEmptyDays ?? true);
   const [showEngTitle, setShowEngTitle] = useState(showEnglishTitle ?? true);
+  const [showProg, setShowProg] = useState(showProgress ?? true);
 
   useEffect(() => {
     setStartsSunday(weekStartsSunday ?? true);
     setUsername(anilistUsername ?? '');
     setEmptyDays(showEmptyDays ?? true);
     setShowEngTitle(showEnglishTitle ?? true);
-  }, [weekStartsSunday, anilistUsername, showEmptyDays, showEnglishTitle]);
+    setShowProg(showProgress ?? true);
+  }, [weekStartsSunday, anilistUsername, showEmptyDays, showEnglishTitle, showProgress]);
 
   const handleSave = useCallback(() => {
     setWeekStartsSunday(startsSunday);
     setAnilistUsername(username);
     setShowEmptyDays(emptyDays);
     setShowEnglishTitle(showEngTitle);
+    setShowProgress(showProg);
     setOpen(false);
   }, [
     startsSunday,
     username,
     emptyDays,
     showEngTitle,
+    showProg,
     setWeekStartsSunday,
     setAnilistUsername,
     setShowEmptyDays,
     setShowEnglishTitle,
+    setShowProgress
   ]);
 
   return (
@@ -138,7 +145,7 @@ const Settings = () => {
                           </div>
                         </div>
 
-                        <div className="relative flex items-start">
+                        <div className="relative mb-4 flex items-start">
                           <div className="flex h-5 items-center">
                             <input
                               id="show-english-title"
@@ -156,6 +163,27 @@ const Settings = () => {
                             </label>
                           </div>
                         </div>
+
+                        <div className="relative flex items-start">
+                          <div className="flex h-5 items-center">
+                            <input
+                              id="show-progress"
+                              aria-describedby="show-progress-description"
+                              name="show-progress"
+                              type="checkbox"
+                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                              checked={showProg}
+                              onChange={() => setShowProg(!showProg)}
+                            />
+                          </div>
+                          <div className="ml-3 text-sm">
+                            <label htmlFor="show-progress" className="font-medium text-gray-700">
+                              Show Progress
+                            </label>
+                          </div>
+                        </div>
+
+
                       </div>
                     </div>
                   </div>

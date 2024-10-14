@@ -8,11 +8,12 @@ import { AiringScheduleMedia } from '../types';
 type Props = {
   day: string;
   cards: AiringScheduleMedia[];
+  progress: Record<string, number | null>;
   scaleCards: boolean;
 };
 
 const Day = (props: Props) => {
-  const { day, cards, scaleCards } = props;
+  const { day, cards, progress, scaleCards } = props;
 
   const dayName = DateTime.fromISO(day).toFormat('cccc');
 
@@ -43,7 +44,7 @@ const Day = (props: Props) => {
         {dayName}
       </div>
       {cards.map((m) => {
-        return <Card key={m.id} media={m} scaleCard={scaleCards} />;
+        return <Card key={m.id} media={m} progress={progress[m.id]} scaleCard={scaleCards} />;
       })}
     </div>
   );

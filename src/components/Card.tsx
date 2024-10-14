@@ -6,6 +6,20 @@ import classNames from 'classnames';
 import { AiringScheduleMedia, AiringScheduleMediaExternalLink } from '../types';
 import useSettings from '../hooks/useSettings';
 
+const Progress = (props: { x: number, y: number }) => {
+  const { x, y } = props;
+
+  const width = Math.floor(x/y * 100) ;
+
+  return (
+    <div className='absolute bottom-0 w-full rounded-b-md overflow-hidden'>
+      <div style={{
+        width: `${width}%`
+      }} className='bg-[#C724B1] h-1'></div>
+    </div>
+  )
+}
+
 const getSiteRank = (site?: string) => {
   switch (site) {
     case 'HIDIVE':
@@ -30,12 +44,13 @@ const getSiteRank = (site?: string) => {
 type Props = {
   media: AiringScheduleMedia;
   scaleCard: boolean;
+  progress: number | null;
 };
 
 const Card = (props: Props) => {
-  const { media, scaleCard } = props;
+  const { media, scaleCard, progress } = props;
 
-  const { showEnglishTitle } = useSettings();
+  const { showEnglishTitle, showProgress } = useSettings();
 
   const title = media.title?.romaji;
   const titleEnglish = media.title?.english;
@@ -44,6 +59,8 @@ const Card = (props: Props) => {
   const streamingExternalLinks =
     media.externalLinks?.filter((el): el is AiringScheduleMediaExternalLink => el?.type === 'STREAMING') ?? [];
   const streamingExternalLink = head(streamingExternalLinks.sort((a, b) => getSiteRank(a.site) - getSiteRank(b.site)));
+
+  const renderProgress = showProgress && !!progress && !!media.episodes;
 
   return (
     <a
@@ -91,6 +108,7 @@ const Card = (props: Props) => {
           {streamingExternalLink && <StreamingIcon link={streamingExternalLink} />}
         </div>
       )}
+      {renderProgress && <Progress x={progress} y={media.episodes as number}/>}
     </a>
   );
 };

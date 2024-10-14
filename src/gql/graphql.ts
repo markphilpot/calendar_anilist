@@ -3350,11 +3350,13 @@ export type usersAiringScheduleQuery = {
     pageInfo: { __typename: 'PageInfo'; hasNextPage: boolean | null; total: number | null } | null;
     mediaList: Array<{
       __typename: 'MediaList';
+      progress: number | null;
       media: {
         __typename: 'Media';
         id: number;
         status: MediaStatus | null;
         siteUrl: string | null;
+        episodes: number | null;
         coverImage: { __typename: 'MediaCoverImage'; medium: string | null; large: string | null } | null;
         title: { __typename: 'MediaTitle'; romaji: string | null; english: string | null } | null;
         externalLinks: Array<{
@@ -3394,6 +3396,7 @@ export type airingScheduleQuery = {
       id: number;
       status: MediaStatus | null;
       siteUrl: string | null;
+      episodes: number | null;
       coverImage: { __typename: 'MediaCoverImage'; medium: string | null; large: string | null } | null;
       title: { __typename: 'MediaTitle'; romaji: string | null; english: string | null } | null;
       externalLinks: Array<{
@@ -3496,6 +3499,7 @@ export const usersAiringScheduleDocument = {
                   'selectionSet': {
                     'kind': 'SelectionSet',
                     'selections': [
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'progress' } },
                       {
                         'kind': 'Field',
                         'name': { 'kind': 'Name', 'value': 'media' },
@@ -3505,6 +3509,7 @@ export const usersAiringScheduleDocument = {
                             { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
                             { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'status' } },
                             { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'siteUrl' } },
+                            { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'episodes' } },
                             {
                               'kind': 'Field',
                               'name': { 'kind': 'Name', 'value': 'coverImage' },
@@ -3689,6 +3694,7 @@ export const airingScheduleDocument = {
                       { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
                       { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'status' } },
                       { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'siteUrl' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'episodes' } },
                       {
                         'kind': 'Field',
                         'name': { 'kind': 'Name', 'value': 'coverImage' },

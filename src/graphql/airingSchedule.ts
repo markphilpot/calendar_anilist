@@ -8,10 +8,12 @@ export const usersAiringSchedule = gql(`
         total
       }
       mediaList(userName: $userName, type: ANIME, status: CURRENT) {
+        progress
         media {
           id
           status
           siteUrl
+          episodes
           coverImage {
             medium
             large
@@ -53,6 +55,7 @@ export const airingSchedule = gql(`
         id
         status
         siteUrl
+        episodes
         coverImage {
           medium
           large

@@ -7,10 +7,11 @@ import { AiringScheduleMedia } from '../types';
 
 type Props = {
   buckets: Record<string, AiringScheduleMedia[]>;
+  progress: Record<string, number | null>;
 };
 
 const Week = (props: Props) => {
-  const { buckets } = props;
+  const { buckets, progress } = props;
 
   const { showEmptyDays } = useSettings();
 
@@ -25,7 +26,7 @@ const Week = (props: Props) => {
   return (
     <div className={'box-border flex w-full flex-shrink-0 flex-grow basis-auto flex-row flex-wrap p-2 xs:flex-nowrap'}>
       {pairs.map(([key, list]) => {
-        return <Day key={key} day={key} cards={list} scaleCards={scaleCards} />;
+        return <Day key={key} day={key} cards={list} progress={progress} scaleCards={scaleCards} />;
       })}
     </div>
   );

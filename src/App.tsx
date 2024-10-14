@@ -125,13 +125,24 @@ const App = (props: Props) => {
     return b;
   }, [userData, globalData, weekOffests, showUserData]);
 
+  const progressMap: Record<string, number | null> = useMemo(() => {
+    if(!showUserData) return {}
+
+    return (userData?.Page?.mediaList ?? []).reduce((acc, cur) => {
+      return {
+        ...acc,
+        [cur?.media?.id ?? '']: cur?.progress
+      }
+    }, {})
+  }, [showUserData, userData])
+
   return (
     <div
       className={
         'flex min-h-full w-full flex-col bg-white text-black transition-all p-safe dark:bg-[#090909] dark:text-zinc-300'
       }
     >
-      <Week buckets={buckets} />
+      <Week buckets={buckets} progress={progressMap}/>
       <Footer refresh={refresh} loading={userLoading || globalLoading} />
     </div>
   );
