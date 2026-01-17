@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { IoSettingsOutline } from 'react-icons/io5';
 import useSettings from '../../hooks/useSettings';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
@@ -28,14 +28,6 @@ const Settings = () => {
   const [emptyDays, setEmptyDays] = useState(showEmptyDays ?? true);
   const [showEngTitle, setShowEngTitle] = useState(showEnglishTitle ?? true);
   const [showProg, setShowProg] = useState(showProgress ?? true);
-
-  useEffect(() => {
-    setStartsSunday(weekStartsSunday ?? true);
-    setUsername(anilistUsername ?? '');
-    setEmptyDays(showEmptyDays ?? true);
-    setShowEngTitle(showEnglishTitle ?? true);
-    setShowProg(showProgress ?? true);
-  }, [weekStartsSunday, anilistUsername, showEmptyDays, showEnglishTitle, showProgress]);
 
   const handleSave = useCallback(() => {
     setWeekStartsSunday(startsSunday);

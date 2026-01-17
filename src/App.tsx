@@ -62,10 +62,13 @@ const App = (props: Props) => {
     { enabled: !showUserData }
   );
 
-  const refresh = useCallback(() => {
-    return clearCache().then(() => {
-      showUserData ? userDataRefetch() : globalDataRefetch();
-    });
+  const refresh = useCallback(async () => {
+    await clearCache();
+    if (showUserData) {
+      await userDataRefetch();
+    } else {
+      await globalDataRefetch();
+    }
   }, [clearCache, globalDataRefetch, showUserData, userDataRefetch]);
 
   const weekOffests = useMemo(
@@ -89,7 +92,7 @@ const App = (props: Props) => {
 
     const mediaList = showUserData
       ? (userData?.Page?.mediaList ?? []).map((ml) => ml?.media)
-      : globalData?.Page?.media ?? [];
+      : (globalData?.Page?.media ?? []);
 
     for (let i = 0; i < mediaList.length; i++) {
       const media = mediaList[i];
@@ -101,7 +104,7 @@ const App = (props: Props) => {
         if (airingSchedule != null) {
           const day = DateTime.fromMillis(airingSchedule.airingAt * 1000).toISODate();
 
-          if (day in b && media != null) {
+          if (day && day in b && media != null) {
             b[day].push(media);
             break;
           }

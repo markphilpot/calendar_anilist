@@ -6,7 +6,7 @@ import PoweredBy from './PoweredBy';
 import Settings from './Settings';
 
 type Props = {
-  refresh: () => Promise<unknown>;
+  refresh: () => void;
   loading: boolean;
 };
 
@@ -17,7 +17,7 @@ const Footer = (props: Props) => {
     <div className={'mb-2 box-border flex w-full flex-row items-center justify-center text-sm'}>
       <PoweredBy />
       <IoLogoGithub
-        className={'mr-2 mr-4 cursor-pointer bg-transparent'}
+        className={'mr-4 cursor-pointer bg-transparent'}
         onClick={() => window.open('https://github.com/markphilpot/calendar_anilist', '_blank')}
       />
       {loading ? (

@@ -87,27 +87,27 @@ const useSettings = () => {
       setProgress(showProgress);
     };
 
-    // @ts-ignore CustomEvent
+    // @ts-expect-error CustomEvent
     window.addEventListener('settingsChange.dayStart', captureDayStart);
-    // @ts-ignore CustomEvent
+    // @ts-expect-error CustomEvent
     window.addEventListener('settingsChange.username', captureUsername);
-    // @ts-ignore CustomEvent
+    // @ts-expect-error CustomEvent
     window.addEventListener('settingsChange.showEmptyDays', captureEmptyDays);
-    // @ts-ignore CustomEvent
+    // @ts-expect-error CustomEvent
     window.addEventListener('settingsChange.showEnglishTitle', captureShowEnglishTitle);
-    // @ts-ignore CustomEvent
+    // @ts-expect-error CustomEvent
     window.addEventListener('settingsChange.showProgress', captureShowProgress);
 
     return () => {
-      // @ts-ignore CustomEvent
+      // @ts-expect-error CustomEvent
       window.removeEventListener('settingsChange.dayStart', captureDayStart);
-      // @ts-ignore CustomEvent
+      // @ts-expect-error CustomEvent
       window.removeEventListener('settingsChange.username', captureUsername);
-      // @ts-ignore CustomEvent
+      // @ts-expect-error CustomEvent
       window.removeEventListener('settingsChange.showEmptyDays', captureEmptyDays);
-      // @ts-ignore CustomEvent
+      // @ts-expect-error CustomEvent
       window.removeEventListener('settingsChange.showEnglishTitle', captureShowEnglishTitle);
-      // @ts-ignore CustomEvent
+      // @ts-expect-error CustomEvent
       window.removeEventListener('settingsChange.showProgress', captureShowProgress);
     };
   }, []);

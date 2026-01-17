@@ -9,10 +9,7 @@ import type {
   MediaSeason,
 } from '../gql/graphql';
 
-export function useUsersAiringSchedule(
-  variables: usersAiringScheduleQueryVariables,
-  options?: { enabled?: boolean }
-) {
+export function useUsersAiringSchedule(variables: usersAiringScheduleQueryVariables, options?: { enabled?: boolean }) {
   return useQuery({
     queryKey: ['usersAiringSchedule', variables],
     queryFn: async () => {
@@ -26,10 +23,7 @@ export function useUsersAiringSchedule(
   });
 }
 
-export function useAiringSchedule(
-  variables: { year: number; season: MediaSeason },
-  options?: { enabled?: boolean }
-) {
+export function useAiringSchedule(variables: { year: number; season: MediaSeason }, options?: { enabled?: boolean }) {
   return useQuery({
     queryKey: ['airingSchedule', variables],
     queryFn: async () => {

@@ -16,7 +16,7 @@ const Week = (props: Props) => {
   const { showEmptyDays } = useSettings();
 
   const pairs = useMemo(() => {
-    return toPairs(buckets).filter(([key, list]) => {
+    return toPairs(buckets).filter(([, list]) => {
       return showEmptyDays || list.length > 0;
     });
   }, [buckets, showEmptyDays]);
