@@ -1,3 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Custom screen breakpoint */
+  --breakpoint-xs: 400px;
+
+  /* Custom font families */
+  --font-ssp: "Source Sans Pro", ui-sans-serif, system-ui, sans-serif;
+  --font-lato: "Lato", ui-sans-serif, system-ui, sans-serif;
+}
