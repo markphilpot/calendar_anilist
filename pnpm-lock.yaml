@@ -11,9 +11,6 @@ importers:
 
   .:
     dependencies:
-      '@apollo/client':
-        specifier: ^3.5.10
-        version: 3.14.0(@types/react@19.2.8)(graphql-ws@6.0.6(graphql@15.10.1)(ws@8.19.0))(graphql@15.10.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@fontsource/lato':
         specifier: ^4.5.5
         version: 4.5.10
@@ -29,9 +26,15 @@ importers:
       '@radix-ui/react-dialog':
         specifier: ^1.1.15
         version: 1.1.15(@types/react-dom@19.2.3(@types/react@19.2.8))(@types/react@19.2.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      apollo3-cache-persist:
-        specifier: ^0.14.0
-        version: 0.14.1(@apollo/client@3.14.0(@types/react@19.2.8)(graphql-ws@6.0.6(graphql@15.10.1)(ws@8.19.0))(graphql@15.10.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
+      '@tanstack/query-sync-storage-persister':
+        specifier: ^5.90.20
+        version: 5.90.20
+      '@tanstack/react-query':
+        specifier: ^5.90.18
+        version: 5.90.18(react@19.2.3)
+      '@tanstack/react-query-persist-client':
+        specifier: ^5.90.20
+        version: 5.90.20(@tanstack/react-query@5.90.18(react@19.2.3))(react@19.2.3)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -44,6 +47,9 @@ importers:
       graphql:
         specifier: ^15.5.3
         version: 15.10.1
+      graphql-request:
+        specifier: ^7.4.0
+        version: 7.4.0(graphql@15.10.1)
       lucide-react:
         specifier: ^0.562.0
         version: 0.562.0(react@19.2.3)
@@ -140,24 +146,6 @@ importers:
         version: 7.3.1(@types/node@22.19.7)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.46.0)(yaml@2.8.2)
 
 packages:
-
-  '@apollo/client@3.14.0':
-    resolution: {integrity: sha512-0YQKKRIxiMlIou+SekQqdCo0ZTHxOcES+K8vKB53cIDpwABNR0P0yRzPgsbgcj3zRJniD93S/ontsnZsCLZrxQ==}
-    peerDependencies:
-      graphql: ^15.5.3
-      graphql-ws: ^5.5.5 || ^6.0.3
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc
-      subscriptions-transport-ws: ^0.9.0 || ^0.11.0
-    peerDependenciesMeta:
-      graphql-ws:
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
-      subscriptions-transport-ws:
-        optional: true
 
   '@ardatan/relay-compiler@12.0.3':
     resolution: {integrity: sha512-mBDFOGvAoVlWaWqs3hm1AciGHSQE1rqFc/liZTyYz/Oek9yZdT5H26pH2zAFuEiTiBVPPyMuqf5VjOFPI2DGsQ==}
@@ -1182,6 +1170,26 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7
 
+  '@tanstack/query-core@5.90.18':
+    resolution: {integrity: sha512-rbGx6bHgPNVzutP7BEr+53UPKohpckqlMAad+To9UxTbeaQ+kC/1SDRj+QzkwbQ7qhLT/1IKp34yS6thda6fzA==}
+
+  '@tanstack/query-persist-client-core@5.91.17':
+    resolution: {integrity: sha512-NfXUCUzar8Y3fw0F6lPlrnJWfg148IXvWBIr/0x2LbYAoGdAnJDU3PzVaLTafI2vKQqIphe3uAq1068+nhn+nQ==}
+
+  '@tanstack/query-sync-storage-persister@5.90.20':
+    resolution: {integrity: sha512-VGVJsYLzOUxDzYOEiB1HNd7cxWbU9eEH+oEiVumIbBwWEcjvW5ClFHQgMAUPUe3vXowXcPz7NulVrIU46h6rbg==}
+
+  '@tanstack/react-query-persist-client@5.90.20':
+    resolution: {integrity: sha512-FiKLxu7haxUAVV9hUEaUkUF6CsOM8i0ERtE6ETLQ0t5aKefY9tRByP9J1C4qf1r1m2TSWV0WwkmOsmsy1pZqsQ==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.90.18
+      react: ^18 || ^19
+
+  '@tanstack/react-query@5.90.18':
+    resolution: {integrity: sha512-KqNZX0C5IFz4639zR1ilnQ288tQdJrMNLtzmlzyJ14xauBkhtLEy3mPU/V4KiHsr41eL1ILZbDP36TB12lYfCQ==}
+    peerDependencies:
+      react: ^18 || ^19
+
   '@theguild/federation-composition@0.21.3':
     resolution: {integrity: sha512-+LlHTa4UbRpZBog3ggAxjYIFvdfH3UMvvBUptur19TMWkqU4+n3GmN+mDjejU+dyBXIG27c25RsiQP1HyvM99g==}
     engines: {node: '>=18'}
@@ -1313,22 +1321,6 @@ packages:
     resolution: {integrity: sha512-Nst5JdK47VIl9UcGwtv2Rcgyn5lWtZ0/mhRQ4G8NN2isxpq2TO30iqHzmwoJycjWuyUfg3GFXqP/gFHXeV57IA==}
     engines: {node: '>=16.0.0'}
 
-  '@wry/caches@1.0.1':
-    resolution: {integrity: sha512-bXuaUNLVVkD20wcGBWRyo7j9N3TxePEWFZj2Y+r9OoUzfqmavM84+mFykRicNsBqatba5JLay1t48wxaXaWnlA==}
-    engines: {node: '>=8'}
-
-  '@wry/context@0.7.4':
-    resolution: {integrity: sha512-jmT7Sb4ZQWI5iyu3lobQxICu2nC/vbUhP0vIdd6tHC9PTfenmRmuIFqktc6GH9cgi+ZHnsLWPvfSvc4DrYmKiQ==}
-    engines: {node: '>=8'}
-
-  '@wry/equality@0.5.7':
-    resolution: {integrity: sha512-BRFORjsTuQv5gxcXsuDXx6oGRhuVsEGwZy6LOzRRfgu+eSfxbhUQ9L9YtSEIuIjY/o7g3iWFjrc5eSY1GXP2Dw==}
-    engines: {node: '>=8'}
-
-  '@wry/trie@0.5.0':
-    resolution: {integrity: sha512-FNoYzHawTMk/6KMQoEG5O4PuioX19UbwdQKF44yw0nLfOypfQdjtfZzo/UIJWAJ23sNIFbD1Ug9lbaDGMwbqQA==}
-    engines: {node: '>=8'}
-
   '@xobotyi/scrollbar-width@1.9.5':
     resolution: {integrity: sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==}
 
@@ -1364,11 +1356,6 @@ packages:
   ansi-styles@4.3.0:
     resolution: {integrity: sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==}
     engines: {node: '>=8'}
-
-  apollo3-cache-persist@0.14.1:
-    resolution: {integrity: sha512-p/jNzN/MmSd0TmY7/ts0B3qi0SdQ3w9yNLQdKqB3GGb9xATUlAum2v4hSrTeWd/DZKK2Z7Xg5kFXTH6nNVnKSQ==}
-    peerDependencies:
-      '@apollo/client': ^3.2.5
 
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
@@ -1823,6 +1810,11 @@ packages:
     peerDependencies:
       graphql: ^15.5.3
 
+  graphql-request@7.4.0:
+    resolution: {integrity: sha512-xfr+zFb/QYbs4l4ty0dltqiXIp07U6sl+tOKAb0t50/EnQek6CVVBLjETXi+FghElytvgaAWtIOt3EV7zLzIAQ==}
+    peerDependencies:
+      graphql: ^15.5.3
+
   graphql-tag@2.12.6:
     resolution: {integrity: sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==}
     engines: {node: '>=10'}
@@ -1864,9 +1856,6 @@ packages:
 
   hermes-parser@0.25.1:
     resolution: {integrity: sha512-6pEjquH3rqaI6cYAXYPcz9MS4rY6R4ngRgrgfDshRptUZIc3lw0MCIJIGDj9++mfySOuPTHB4nrSW99BCvOPIA==}
-
-  hoist-non-react-statics@3.3.2:
-    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
 
   http-proxy-agent@7.0.2:
     resolution: {integrity: sha512-T1gkAiYYDWYx3V5Bmyu7HcfcvL7mUrTWiM6yOfa3PIphViJ/gFPbvidQ+veqSOHci/PxBcDabeUNCzpOODJZig==}
@@ -2263,9 +2252,6 @@ packages:
     resolution: {integrity: sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==}
     engines: {node: '>=6'}
 
-  optimism@0.18.1:
-    resolution: {integrity: sha512-mLXNwWPa9dgFyDqkNi54sjDyNJ9/fTI6WGBLgnXku1vdKY/jovHfZT5r+aiVeFFLOz+foPNOm5YJ4mqgld2GBQ==}
-
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
@@ -2403,9 +2389,6 @@ packages:
   promise@7.3.1:
     resolution: {integrity: sha512-nolQXZ/4L+bP/UGlkfaIujX9BKxGwmQ9OT4mOt5yvy8iK1h3wqTEJCijzGANTCCl9nWjY41juyAn2K3Q1hLLTg==}
 
-  prop-types@15.8.1:
-    resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
-
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
@@ -2425,9 +2408,6 @@ packages:
     resolution: {integrity: sha512-IBaDuHiShdZqmfc/TwHu6+d6k2ltNCf3AszxNmjJc1KUfXdEeRJOKyNvLmAHaarhzGmTSVygNdyu8/opXv2gaw==}
     peerDependencies:
       react: '*'
-
-  react-is@16.13.1:
-    resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
   react-refresh@0.18.0:
     resolution: {integrity: sha512-QgT5//D3jfjJb6Gsjxv0Slpj23ip+HtOpnNgnb2S5zU3CB26G/IDPGoy4RJB42wzFE46DRsstbW6tKHoKbhAxw==}
@@ -2501,17 +2481,6 @@ packages:
   readable-stream@3.6.2:
     resolution: {integrity: sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==}
     engines: {node: '>= 6'}
-
-  rehackt@0.1.0:
-    resolution: {integrity: sha512-7kRDOuLHB87D/JESKxQoRwv4DzbIdwkAGQ7p6QKGdVlY1IZheUnVhlk/4UZlNUVxdAXpyxikE3URsG067ybVzw==}
-    peerDependencies:
-      '@types/react': '*'
-      react: '*'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react:
-        optional: true
 
   relay-runtime@12.0.0:
     resolution: {integrity: sha512-QU6JKr1tMsry22DXNy9Whsq5rmvwr3LSZiiWV/9+DFpuTWvp+WFhobWMc8TC4OjKFfNhEZy7mOiqUAn5atQtug==}
@@ -2695,10 +2664,6 @@ packages:
   swap-case@2.0.2:
     resolution: {integrity: sha512-kc6S2YS/2yXbtkSMunBtKdah4VFETZ8Oh6ONSmSd9bRxhqTrtARUCBUiWXH3xVPpvR7tz2CSnkuXVE42EcGnMw==}
 
-  symbol-observable@4.0.0:
-    resolution: {integrity: sha512-b19dMThMV4HVFynSAM1++gBHAbk2Tc/osgLIBZMKsyqh34jb2e8Os7T6ZW/Bt3pJFdBTd2JwAnAAEQV7rSNvcQ==}
-    engines: {node: '>=0.10'}
-
   sync-fetch@0.6.0:
     resolution: {integrity: sha512-IELLEvzHuCfc1uTsshPK58ViSdNqXxlml1U+fmwJIKLYKOr/rAtBrorE2RYm5IHaMpDNlmC0fr1LAvdXvyheEQ==}
     engines: {node: '>=18'}
@@ -2758,10 +2723,6 @@ packages:
 
   ts-easing@0.2.0:
     resolution: {integrity: sha512-Z86EW+fFFh/IFB1fqQ3/+7Zpf9t2ebOAxNI/V6Wo7r5gqiqtxmgTlQ1qbqQcjLKYeSHPTsEmvlJUDg/EuL0uHQ==}
-
-  ts-invariant@0.10.3:
-    resolution: {integrity: sha512-uivwYcQaxAucv1CzRp2n/QdYPo4ILf9VXgH19zEIjFx2EJufV16P0JtJVpYHy89DItG6Kwj2oIUjrcK5au+4tQ==}
-    engines: {node: '>=8'}
 
   ts-log@2.2.7:
     resolution: {integrity: sha512-320x5Ggei84AxzlXp91QkIGSw5wgaLT6GeAH0KsqDmRZdVWW2OiSeVvElVoatk3f7nicwXlElXsoFkARiGE2yg==}
@@ -2964,12 +2925,6 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zen-observable-ts@1.2.5:
-    resolution: {integrity: sha512-QZWQekv6iB72Naeake9hS1KxHlotfRpe+WGNbNx5/ta+R3DNjVO2bswf63gXlWDcs+EMd7XY8HfVQyP1X6T4Zg==}
-
-  zen-observable@0.8.15:
-    resolution: {integrity: sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==}
-
   zod-validation-error@4.0.2:
     resolution: {integrity: sha512-Q6/nZLe6jxuU80qb/4uJ4t5v2VEZ44lzQjPDhYJNztRQ4wyWc6VF3D3Kb/fAuPetZQnhS3hnajCf9CsWesghLQ==}
     engines: {node: '>=18.0.0'}
@@ -2980,29 +2935,6 @@ packages:
     resolution: {integrity: sha512-k7Nwx6vuWx1IJ9Bjuf4Zt1PEllcwe7cls3VNzm4CQ1/hgtFUK2bRNG3rvnpPUhFjmqJKAKtjV576KnUkHocg/g==}
 
 snapshots:
-
-  '@apollo/client@3.14.0(@types/react@19.2.8)(graphql-ws@6.0.6(graphql@15.10.1)(ws@8.19.0))(graphql@15.10.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
-    dependencies:
-      '@graphql-typed-document-node/core': 3.2.0(graphql@15.10.1)
-      '@wry/caches': 1.0.1
-      '@wry/equality': 0.5.7
-      '@wry/trie': 0.5.0
-      graphql: 15.10.1
-      graphql-tag: 2.12.6(graphql@15.10.1)
-      hoist-non-react-statics: 3.3.2
-      optimism: 0.18.1
-      prop-types: 15.8.1
-      rehackt: 0.1.0(@types/react@19.2.8)(react@19.2.3)
-      symbol-observable: 4.0.0
-      ts-invariant: 0.10.3
-      tslib: 2.8.1
-      zen-observable-ts: 1.2.5
-    optionalDependencies:
-      graphql-ws: 6.0.6(graphql@15.10.1)(ws@8.19.0)
-      react: 19.2.3
-      react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - '@types/react'
 
   '@ardatan/relay-compiler@12.0.3(graphql@15.10.1)':
     dependencies:
@@ -4100,6 +4032,28 @@ snapshots:
       tailwindcss: 4.1.18
       vite: 7.3.1(@types/node@22.19.7)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.46.0)(yaml@2.8.2)
 
+  '@tanstack/query-core@5.90.18': {}
+
+  '@tanstack/query-persist-client-core@5.91.17':
+    dependencies:
+      '@tanstack/query-core': 5.90.18
+
+  '@tanstack/query-sync-storage-persister@5.90.20':
+    dependencies:
+      '@tanstack/query-core': 5.90.18
+      '@tanstack/query-persist-client-core': 5.91.17
+
+  '@tanstack/react-query-persist-client@5.90.20(@tanstack/react-query@5.90.18(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      '@tanstack/query-persist-client-core': 5.91.17
+      '@tanstack/react-query': 5.90.18(react@19.2.3)
+      react: 19.2.3
+
+  '@tanstack/react-query@5.90.18(react@19.2.3)':
+    dependencies:
+      '@tanstack/query-core': 5.90.18
+      react: 19.2.3
+
   '@theguild/federation-composition@0.21.3(graphql@15.10.1)':
     dependencies:
       constant-case: 3.0.4
@@ -4285,22 +4239,6 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@wry/caches@1.0.1':
-    dependencies:
-      tslib: 2.8.1
-
-  '@wry/context@0.7.4':
-    dependencies:
-      tslib: 2.8.1
-
-  '@wry/equality@0.5.7':
-    dependencies:
-      tslib: 2.8.1
-
-  '@wry/trie@0.5.0':
-    dependencies:
-      tslib: 2.8.1
-
   '@xobotyi/scrollbar-width@1.9.5': {}
 
   acorn-jsx@5.3.2(acorn@8.15.0):
@@ -4332,10 +4270,6 @@ snapshots:
   ansi-styles@4.3.0:
     dependencies:
       color-convert: 2.0.1
-
-  apollo3-cache-persist@0.14.1(@apollo/client@3.14.0(@types/react@19.2.8)(graphql-ws@6.0.6(graphql@15.10.1)(ws@8.19.0))(graphql@15.10.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)):
-    dependencies:
-      '@apollo/client': 3.14.0(@types/react@19.2.8)(graphql-ws@6.0.6(graphql@15.10.1)(ws@8.19.0))(graphql@15.10.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
 
   argparse@2.0.1: {}
 
@@ -4855,6 +4789,11 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
+  graphql-request@7.4.0(graphql@15.10.1):
+    dependencies:
+      '@graphql-typed-document-node/core': 3.2.0(graphql@15.10.1)
+      graphql: 15.10.1
+
   graphql-tag@2.12.6(graphql@15.10.1):
     dependencies:
       graphql: 15.10.1
@@ -4880,10 +4819,6 @@ snapshots:
   hermes-parser@0.25.1:
     dependencies:
       hermes-estree: 0.25.1
-
-  hoist-non-react-statics@3.3.2:
-    dependencies:
-      react-is: 16.13.1
 
   http-proxy-agent@7.0.2:
     dependencies:
@@ -5228,13 +5163,6 @@ snapshots:
     dependencies:
       mimic-fn: 2.1.0
 
-  optimism@0.18.1:
-    dependencies:
-      '@wry/caches': 1.0.1
-      '@wry/context': 0.7.4
-      '@wry/trie': 0.5.0
-      tslib: 2.8.1
-
   optionator@0.9.4:
     dependencies:
       deep-is: 0.1.4
@@ -5336,12 +5264,6 @@ snapshots:
     dependencies:
       asap: 2.0.6
 
-  prop-types@15.8.1:
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react-is: 16.13.1
-
   punycode@2.3.1: {}
 
   queue-microtask@1.2.3: {}
@@ -5356,8 +5278,6 @@ snapshots:
   react-icons@4.12.0(react@19.2.3):
     dependencies:
       react: 19.2.3
-
-  react-is@16.13.1: {}
 
   react-refresh@0.18.0: {}
 
@@ -5437,11 +5357,6 @@ snapshots:
       inherits: 2.0.4
       string_decoder: 1.3.0
       util-deprecate: 1.0.2
-
-  rehackt@0.1.0(@types/react@19.2.8)(react@19.2.3):
-    optionalDependencies:
-      '@types/react': 19.2.8
-      react: 19.2.3
 
   relay-runtime@12.0.0:
     dependencies:
@@ -5635,8 +5550,6 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  symbol-observable@4.0.0: {}
-
   sync-fetch@0.6.0:
     dependencies:
       node-fetch: 3.3.2
@@ -5691,10 +5604,6 @@ snapshots:
       typescript: 5.9.3
 
   ts-easing@0.2.0: {}
-
-  ts-invariant@0.10.3:
-    dependencies:
-      tslib: 2.8.1
 
   ts-log@2.2.7: {}
 
@@ -5842,12 +5751,6 @@ snapshots:
       yargs-parser: 21.1.1
 
   yocto-queue@0.1.0: {}
-
-  zen-observable-ts@1.2.5:
-    dependencies:
-      zen-observable: 0.8.15
-
-  zen-observable@0.8.15: {}
 
   zod-validation-error@4.0.2(zod@4.3.5):
     dependencies:

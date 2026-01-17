@@ -1,8 +1,5 @@
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { DateTime } from 'luxon';
-
-import { useQuery } from '@apollo/client';
-import { airingSchedule, usersAiringSchedule } from './graphql/airingSchedule';
 
 import '@fontsource/lato';
 import '@fontsource/lato/700.css';
@@ -11,6 +8,7 @@ import '@fontsource/source-sans-pro/700.css';
 import Week from './components/Week';
 import Footer from './components/Footer';
 import useSettings from './hooks/useSettings';
+import { useUsersAiringSchedule, useAiringSchedule } from './hooks/useAiringSchedule';
 import { AiringSchedule, MediaSeason } from './gql/graphql';
 import { AiringScheduleMedia } from './types';
 
@@ -51,32 +49,28 @@ const App = (props: Props) => {
   const {
     data: userData,
     refetch: userDataRefetch,
-    loading: userLoading,
-  } = useQuery(usersAiringSchedule, {
-    fetchPolicy: 'cache-first',
-    variables: {
-      userName: anilistUsername,
-    },
-    skip: !showUserData,
-    notifyOnNetworkStatusChange: true,
-  });
+    isLoading: userLoading,
+    isFetching: userFetching,
+  } = useUsersAiringSchedule(
+    { userName: anilistUsername },
+    { enabled: showUserData }
+  );
 
   const {
     data: globalData,
     refetch: globalDataRefetch,
-    loading: globalLoading,
-  } = useQuery(airingSchedule, {
-    fetchPolicy: 'cache-first',
-    variables: {
+    isLoading: globalLoading,
+    isFetching: globalFetching,
+  } = useAiringSchedule(
+    {
       year: DateTime.now().year,
       season: getSeason(),
     },
-    skip: showUserData,
-    notifyOnNetworkStatusChange: true,
-  });
+    { enabled: !showUserData }
+  );
 
   const refresh = useCallback(() => {
-    return clearCache().then((result) => {
+    return clearCache().then(() => {
       showUserData ? userDataRefetch() : globalDataRefetch();
     });
   }, [clearCache, globalDataRefetch, showUserData, userDataRefetch]);
@@ -126,15 +120,18 @@ const App = (props: Props) => {
   }, [userData, globalData, weekOffests, showUserData]);
 
   const progressMap: Record<string, number | null> = useMemo(() => {
-    if(!showUserData) return {}
+    if (!showUserData) return {};
 
-    return (userData?.Page?.mediaList ?? []).reduce((acc, cur) => {
-      return {
-        ...acc,
-        [cur?.media?.id ?? '']: cur?.progress
+    const result: Record<string, number | null> = {};
+    for (const item of userData?.Page?.mediaList ?? []) {
+      if (item?.media?.id) {
+        result[item.media.id] = item.progress ?? null;
       }
-    }, {})
-  }, [showUserData, userData])
+    }
+    return result;
+  }, [showUserData, userData]);
+
+  const loading = userLoading || globalLoading || userFetching || globalFetching;
 
   return (
     <div
@@ -142,8 +139,8 @@ const App = (props: Props) => {
         'flex min-h-full w-full flex-col bg-white text-black transition-all p-safe dark:bg-[#090909] dark:text-zinc-300'
       }
     >
-      <Week buckets={buckets} progress={progressMap}/>
-      <Footer refresh={refresh} loading={userLoading || globalLoading} />
+      <Week buckets={buckets} progress={progressMap} />
+      <Footer refresh={refresh} loading={loading} />
     </div>
   );
 };
