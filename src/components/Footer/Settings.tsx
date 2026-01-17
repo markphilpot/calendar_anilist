@@ -58,7 +58,7 @@ const Settings = () => {
     <>
       <IoSettingsOutline className={'cursor-pointer'} onClick={() => setOpen(true)} />
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-lg" hideCloseButton>
+        <DialogContent className="sm:max-w-lg" showCloseButton={false}>
           <DialogHeader>
             <DialogTitle className="text-center">Weekly Anime Settings</DialogTitle>
           </DialogHeader>
