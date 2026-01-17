@@ -6,19 +6,22 @@ import classNames from 'classnames';
 import { AiringScheduleMedia, AiringScheduleMediaExternalLink } from '../types';
 import useSettings from '../hooks/useSettings';
 
-const Progress = (props: { x: number, y: number }) => {
+const Progress = (props: { x: number; y: number }) => {
   const { x, y } = props;
 
-  const width = Math.floor(x/y * 100) ;
+  const width = Math.floor((x / y) * 100);
 
   return (
-    <div className='absolute bottom-0 w-full rounded-b-md overflow-hidden'>
-      <div style={{
-        width: `${width}%`
-      }} className='bg-[#C724B1] h-1'></div>
+    <div className="absolute bottom-0 w-full rounded-b-md overflow-hidden">
+      <div
+        style={{
+          width: `${width}%`,
+        }}
+        className="bg-[#C724B1] h-1"
+      ></div>
     </div>
-  )
-}
+  );
+};
 
 const getSiteRank = (site?: string) => {
   switch (site) {
@@ -90,7 +93,7 @@ const Card = (props: Props) => {
         <div className="flex h-full flex-grow flex-col overflow-hidden gap-4 pt-1">
           <div
             className={classNames(
-              'ml-2 max-h-[114px] overflow-hidden text-ellipsis font-nebula text-xs font-bold line-clamp-3'
+              'ml-2 max-h-[114px] overflow-hidden text-ellipsis font-nebula text-xs font-semibold line-clamp-3'
             )}
           >
             {title}
@@ -98,7 +101,7 @@ const Card = (props: Props) => {
           {showEnglishTitle && (
             <div
               className={classNames(
-                'ml-2 max-h-[114px] overflow-hidden text-ellipsis font-nebula text-xs font-bold line-clamp-2'
+                'ml-2 max-h-[114px] overflow-hidden text-ellipsis font-nebula text-xs font-medium line-clamp-2'
               )}
             >
               {titleEnglish}
@@ -107,7 +110,7 @@ const Card = (props: Props) => {
           {streamingExternalLink && <StreamingIcon link={streamingExternalLink} />}
         </div>
       )}
-      {renderProgress && <Progress x={progress} y={media.episodes as number}/>}
+      {renderProgress && <Progress x={progress} y={media.episodes as number} />}
     </a>
   );
 };
