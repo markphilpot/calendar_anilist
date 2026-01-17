@@ -2,6 +2,7 @@
   "name": "calendar_anilist",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@apollo/client": "^3.5.10",
     "@fontsource/lato": "^4.5.5",
@@ -22,6 +23,7 @@
     "react-use": "^17.3.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/client-preset": "^4.1.0",
     "@graphql-typed-document-node/core": "^3.2.0",
@@ -32,10 +34,15 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^5.1.2",
+    "eslint": "^9.39.2",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.26",
+    "globals": "^17.0.0",
     "prettier": "^2.8.2",
     "prettier-plugin-tailwindcss": "^0.2.1",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.0.0",
+    "typescript-eslint": "^8.53.0",
     "vite": "^7.3.1"
   },
   "resolutions": {
@@ -52,11 +59,6 @@
     "lint:tsc": "tsc --noEmit",
     "update-schema": "curl -i -X POST https://graphql.anilist.co -H \"Content-Type: application/graphql\" -d @assets/introspection.graphql",
     "gql-codegen": "graphql-codegen && prettier --write src/gql/ --cache"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
   },
   "browserslist": {
     "production": [
