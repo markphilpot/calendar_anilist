@@ -24,7 +24,7 @@ const Week = (props: Props) => {
   const scaleCards = pairs.length < 7;
 
   return (
-    <div className={'box-border flex w-full flex-shrink-0 flex-grow basis-auto flex-row flex-wrap p-2 xs:flex-nowrap'}>
+    <div className={'box-border flex w-full shrink-0 grow basis-auto flex-row flex-wrap p-2 xs:flex-nowrap'}>
       {pairs.map(([key, list]) => {
         return <Day key={key} day={key} cards={list} progress={progress} scaleCards={scaleCards} />;
       })}

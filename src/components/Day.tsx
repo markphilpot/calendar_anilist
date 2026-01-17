@@ -22,7 +22,7 @@ const Day = (props: Props) => {
   return (
     <div
       className={classNames(
-        'box-border flex min-h-[100px] flex-grow basis-auto cursor-pointer flex-col',
+        'box-border flex min-h-25 grow basis-auto cursor-pointer flex-col',
         'border-black dark:border-zinc-400',
         'border border-r border-t',
         'xs:basis-0 xs:border-r-0 xs:border-t',

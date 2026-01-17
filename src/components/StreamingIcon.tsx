@@ -27,7 +27,7 @@ const StreamingIcon = (props: Props) => {
       onClick={handleClick}
       aria-label={`Watch on ${link.site}`}
     >
-      <img className={'h-[12px] w-[12px]'} src={link.icon} alt={link.site} />
+      <img className={'h-3 w-3'} src={link.icon} alt={link.site} />
     </button>
   );
 };

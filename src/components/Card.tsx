@@ -90,7 +90,7 @@ const Card = (props: Props) => {
         </div>
       )}
       {title && (
-        <div className="flex h-full flex-grow flex-col overflow-hidden gap-4 pt-1">
+        <div className="flex h-full grow flex-col overflow-hidden gap-4 pt-1">
           <div
             className={classNames(
               'ml-2 max-h-[114px] overflow-hidden text-ellipsis font-nebula text-xs font-semibold line-clamp-3'
