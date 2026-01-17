@@ -3,6 +3,7 @@ import { IoSettingsOutline } from 'react-icons/io5';
 import useSettings from '../../hooks/useSettings';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input.tsx';
+import { Button } from '@/components/ui/button.tsx';
 
 const Settings = () => {
   const [open, setOpen] = useState(false);
@@ -65,7 +66,7 @@ const Settings = () => {
 
           <div className="mt-2 text-left">
             <div className={'mb-4'}>
-              <label htmlFor="anilist-username" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="anilist-username" className="block text-sm font-medium">
                 Anilist Username
               </label>
               <div className="mt-1">
@@ -94,7 +95,7 @@ const Settings = () => {
                 />
               </div>
               <div className="ml-3 text-sm">
-                <label htmlFor="start-sunday" className="font-medium text-gray-700">
+                <label htmlFor="start-sunday" className="font-medium">
                   Week Starts on Sunday
                 </label>
               </div>
@@ -113,7 +114,7 @@ const Settings = () => {
                 />
               </div>
               <div className="ml-3 text-sm">
-                <label htmlFor="show-empty-days" className="font-medium text-gray-700">
+                <label htmlFor="show-empty-days" className="font-medium">
                   Show Empty Days
                 </label>
               </div>
@@ -132,7 +133,7 @@ const Settings = () => {
                 />
               </div>
               <div className="ml-3 text-sm">
-                <label htmlFor="show-english-title" className="font-medium text-gray-700">
+                <label htmlFor="show-english-title" className="font-medium">
                   Show English Title
                 </label>
               </div>
@@ -151,28 +152,18 @@ const Settings = () => {
                 />
               </div>
               <div className="ml-3 text-sm">
-                <label htmlFor="show-progress" className="font-medium text-gray-700">
+                <label htmlFor="show-progress" className="font-medium">
                   Show Progress
                 </label>
               </div>
             </div>
           </div>
 
-          <DialogFooter className="sm:flex-row-reverse">
-            <button
-              type="button"
-              className="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
-              onClick={handleSave}
-            >
-              Done
-            </button>
-            <button
-              type="button"
-              className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm"
-              onClick={() => setOpen(false)}
-            >
+          <DialogFooter>
+            <Button onClick={handleSave}>Done</Button>
+            <Button variant={'secondary'} onClick={() => setOpen(false)}>
               Cancel
-            </button>
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

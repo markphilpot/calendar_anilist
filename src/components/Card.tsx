@@ -90,7 +90,7 @@ const Card = (props: Props) => {
         <div className="flex h-full flex-grow flex-col overflow-hidden gap-4 pt-1">
           <div
             className={classNames(
-              'ml-2 max-h-[114px] overflow-hidden text-ellipsis font-lato text-xs font-bold line-clamp-3'
+              'ml-2 max-h-[114px] overflow-hidden text-ellipsis font-nebula text-xs font-bold line-clamp-3'
             )}
           >
             {title}
@@ -98,13 +98,12 @@ const Card = (props: Props) => {
           {showEnglishTitle && (
             <div
               className={classNames(
-                'ml-2 max-h-[114px] overflow-hidden text-ellipsis font-lato text-xs font-bold line-clamp-2'
+                'ml-2 max-h-[114px] overflow-hidden text-ellipsis font-nebula text-xs font-bold line-clamp-2'
               )}
             >
               {titleEnglish}
             </div>
           )}
-          {/* This is technically a nested <a> but I think this is a proper use case for it*/}
           {streamingExternalLink && <StreamingIcon link={streamingExternalLink} />}
         </div>
       )}

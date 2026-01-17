@@ -34,7 +34,7 @@ const Day = (props: Props) => {
     >
       <div
         className={classNames(
-          'border-b border-black p-1 text-center font-ssp font-bold dark:border-zinc-400 dark:text-white',
+          'border-b border-black p-1 text-center font-nebula font-bold dark:border-zinc-400 dark:text-white',
           'px-6',
           {
             'bg-fuchsia-900 bg-opacity-30 dark:bg-fuchsia-400 dark:bg-opacity-30': isToday,

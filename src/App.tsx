@@ -1,10 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { DateTime } from 'luxon';
 
-import '@fontsource/lato';
-import '@fontsource/lato/700.css';
-import '@fontsource/source-sans-pro/700.css';
-
 import Week from './components/Week';
 import Footer from './components/Footer';
 import useSettings from './hooks/useSettings';
@@ -51,10 +47,7 @@ const App = (props: Props) => {
     refetch: userDataRefetch,
     isLoading: userLoading,
     isFetching: userFetching,
-  } = useUsersAiringSchedule(
-    { userName: anilistUsername },
-    { enabled: showUserData }
-  );
+  } = useUsersAiringSchedule({ userName: anilistUsername }, { enabled: showUserData });
 
   const {
     data: globalData,
@@ -136,7 +129,7 @@ const App = (props: Props) => {
   return (
     <div
       className={
-        'flex min-h-full w-full flex-col bg-white text-black transition-all p-safe dark:bg-[#090909] dark:text-zinc-300'
+        'flex min-h-full w-full flex-col bg-white text-black transition-all p-safe dark:bg-[#090909] dark:text-zinc-300 font-nebula'
       }
     >
       <Week buckets={buckets} progress={progressMap} />

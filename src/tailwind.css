@@ -1,6 +1,103 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* NebulaSans font faces */
+@font-face {
+  font-family: "NebulaSans";
+  font-weight: 300;
+  font-style: normal;
+  src: url("./assets/fonts/nebula/NebulaSans-Light.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NebulaSans";
+  font-weight: 300;
+  font-style: italic;
+  src: url("./assets/fonts/nebula/NebulaSans-LightItalic.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NebulaSans";
+  font-weight: 400;
+  font-style: normal;
+  src: url("./assets/fonts/nebula/NebulaSans-Book.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NebulaSans";
+  font-weight: 400;
+  font-style: italic;
+  src: url("./assets/fonts/nebula/NebulaSans-BookItalic.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NebulaSans";
+  font-weight: 500;
+  font-style: normal;
+  src: url("./assets/fonts/nebula/NebulaSans-Medium.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NebulaSans";
+  font-weight: 500;
+  font-style: italic;
+  src: url("./assets/fonts/nebula/NebulaSans-MediumItalic.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NebulaSans";
+  font-weight: 600;
+  font-style: normal;
+  src: url("./assets/fonts/nebula/NebulaSans-Semibold.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NebulaSans";
+  font-weight: 600;
+  font-style: italic;
+  src: url("./assets/fonts/nebula/NebulaSans-SemiboldItalic.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NebulaSans";
+  font-weight: 700;
+  font-style: normal;
+  src: url("./assets/fonts/nebula/NebulaSans-Bold.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NebulaSans";
+  font-weight: 700;
+  font-style: italic;
+  src: url("./assets/fonts/nebula/NebulaSans-BoldItalic.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NebulaSans";
+  font-weight: 900;
+  font-style: normal;
+  src: url("./assets/fonts/nebula/NebulaSans-Black.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NebulaSans";
+  font-weight: 900;
+  font-style: italic;
+  src: url("./assets/fonts/nebula/NebulaSans-BlackItalic.woff2") format("woff2");
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme {
@@ -8,8 +105,7 @@
   --breakpoint-xs: 400px;
 
   /* Custom font families */
-  --font-ssp: "Source Sans Pro", ui-sans-serif, system-ui, sans-serif;
-  --font-lato: "Lato", ui-sans-serif, system-ui, sans-serif;
+  --font-nebula: "NebulaSans", ui-sans-serif, system-ui, sans-serif;
 
   /* Animation durations */
   --animate-duration: 150ms;
