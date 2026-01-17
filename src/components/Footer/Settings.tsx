@@ -1,13 +1,8 @@
 import { useState, useCallback, useEffect } from 'react';
 import { IoSettingsOutline } from 'react-icons/io5';
 import useSettings from '../../hooks/useSettings';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from '../ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input.tsx';
 
 const Settings = () => {
   const [open, setOpen] = useState(false);
@@ -70,14 +65,14 @@ const Settings = () => {
 
           <div className="mt-2 text-left">
             <div className={'mb-4'}>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="anilist-username" className="block text-sm font-medium text-gray-700">
                 Anilist Username
               </label>
               <div className="mt-1">
-                <input
+                <Input
                   type="text"
-                  name="username"
-                  id="username"
+                  name="anilist-username"
+                  id="anilist-username"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   placeholder=""
                   value={username}
