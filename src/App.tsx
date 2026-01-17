@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { DateTime } from 'luxon';
 
 import Week from './components/Week';
-import Footer from './components/Footer';
+import Footer from './components/Footer/Footer';
 import useSettings from './hooks/useSettings';
 import { useUsersAiringSchedule, useAiringSchedule } from './hooks/useAiringSchedule';
 import { AiringSchedule, MediaSeason } from './gql/graphql';
