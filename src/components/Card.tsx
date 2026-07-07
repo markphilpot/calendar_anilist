@@ -29,12 +29,14 @@ const getSiteRank = (site?: string) => {
       return 0;
     case 'Crunchyroll':
       return 1;
-    case 'YouTube':
-      return 2;
     case 'Netflix':
       return 3;
     case 'Disney Plus':
       return 4;
+    case 'Amazon Prime Video':
+      return 5;
+    case 'YouTube':
+      return 6;
     case 'VRV':
       return 9;
     case 'Bilibili TV':
