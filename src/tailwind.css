@@ -101,8 +101,6 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  /* Custom screen breakpoint */
-  --breakpoint-xs: 400px;
 
   /* Custom font families */
   --font-nebula: 'NebulaSans', ui-sans-serif, system-ui, sans-serif;
