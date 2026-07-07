@@ -25,12 +25,12 @@ const Week = (props: Props) => {
   const scaleCards = pairs.length < 7;
 
   return (
-    <div className="box-border w-full shrink-0 grow basis-auto p-2">
+    <div className="box-border flex w-full shrink-0 grow basis-auto flex-col p-2">
       <div
         className={classNames(
           'flex w-full flex-col overflow-clip rounded border border-black divide-y divide-black',
           'dark:border-zinc-400 dark:divide-zinc-400',
-          'sm:flex-row sm:divide-x sm:divide-y-0'
+          'sm:grow sm:flex-row sm:divide-x sm:divide-y-0'
         )}
       >
         {pairs.map(([key, list]) => {
