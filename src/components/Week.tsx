@@ -28,7 +28,7 @@ const Week = (props: Props) => {
     <div className="box-border w-full shrink-0 grow basis-auto p-2">
       <div
         className={classNames(
-          'flex w-full flex-col overflow-hidden rounded border border-black divide-y divide-black',
+          'flex w-full flex-col overflow-clip rounded border border-black divide-y divide-black',
           'dark:border-zinc-400 dark:divide-zinc-400',
           'sm:flex-row sm:divide-x sm:divide-y-0'
         )}
