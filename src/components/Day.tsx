@@ -20,24 +20,15 @@ const Day = (props: Props) => {
   const isToday = dayName === DateTime.now().toFormat('cccc');
 
   return (
-    <div
-      className={classNames(
-        'box-border flex min-h-25 grow basis-auto cursor-pointer flex-col',
-        'border-black dark:border-zinc-400',
-        'border border-r border-t',
-        'xs:basis-0 xs:border-r-0 xs:border-t',
-        'first:rounded-tl first:rounded-tr',
-        'xs:first:rounded-bl xs:first:rounded-tl xs:first:rounded-tr-none',
-        'last:rounded-br last:rounded-bl',
-        'last:border-r xs:last:rounded-br xs:last:rounded-tr xs:last:rounded-bl-none'
-      )}
-    >
+    <div className="box-border flex min-h-25 grow basis-auto cursor-pointer flex-col sm:basis-0">
       <div
         className={classNames(
-          'border-b border-black p-1 text-center font-nebula font-bold dark:border-zinc-400 dark:text-white',
+          'sticky top-0 z-10 border-b border-black bg-white p-1 text-center font-nebula font-bold',
+          'dark:border-zinc-400 dark:bg-[#090909] dark:text-white',
           'px-6',
+          'sm:static',
           {
-            'bg-fuchsia-900 bg-opacity-30 dark:bg-fuchsia-400 dark:bg-opacity-30': isToday,
+            'bg-fuchsia-100 dark:bg-fuchsia-950': isToday,
           }
         )}
       >
